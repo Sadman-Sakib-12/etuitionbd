@@ -18,7 +18,7 @@ const Navbar = () => {
         </>
     )
     return (
-        <div className='sticky top-0 z-50 bg-base-100 shadow '>
+        <div className='sticky top-0 z-50 bg-green-400 shadow '>
             <div className='navbar max-w-7xl mx-auto flex items-center justify-between'>
                 {/* Left section */}
                 <div className='navbar-start'>

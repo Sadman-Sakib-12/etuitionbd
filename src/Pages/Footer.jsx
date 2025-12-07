@@ -5,8 +5,8 @@ import { Link } from 'react-router'
 
 const Footer = () => {
     return (
-        <footer className='bg-gray-200 text-base-content mt-10'>
-            <div className='max-w-7xl mx-auto py-10 px-5 grid md:grid-cols-4 gap-8'>
+        <footer className='bg-gray-200 text-base-content mt-5'>
+            <div className='max-w-7xl mx-auto py-5 px-5 grid md:grid-cols-4 gap-8'>
                 <div>
                     <h2 className='font-bold text-lg mb-3'>About Tuition Platfrom</h2>
                     <p className='text-sm'> We connect students with verifide tutors for a</p>
