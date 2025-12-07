@@ -1,18 +1,19 @@
 import React from 'react'
 import { Outlet } from 'react-router'
+import Sidebar from '../componet/Dashboard/Sidebar/Menu/Sidebar'
 
 const DashboardLayout = () => {
   return (
-     <div>
-    <div className='max-w-11/12 mx-auto' >
-      {/* <Navbar/> */}
-      <main className='min-h-[calc(100vh-178px)]'>
-        <Outlet/>
-      </main>
-     
+    <div>
+      <div className=' mx-auto' >
+        <Sidebar />
+        <main >
+          <Outlet />
+        </main>
+
+      </div>
+      {/* <Footer/> */}
     </div>
-     {/* <Footer/> */}
-     </div>
   )
 }
 
