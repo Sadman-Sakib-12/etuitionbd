@@ -62,7 +62,7 @@ const Navbar = () => {
 
                     {user && (
                         <div className='dropdown dropdown-end'>
-                            <label tabIndex={0} className='btn btn-ghost m-1 flex items-center gap-2'>
+                            <label tabIndex={0} className=' btn-ghost m-1 flex items-center gap-2'>
                                 <div>
                                     {
                                         user.photoURL ? (<img className='rounded-full h-15 w-15' src={user.photoURL} alt="profile" />) : (< FaUserCircle size={30} />)

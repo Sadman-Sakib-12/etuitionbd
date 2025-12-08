@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import Home from "../Pages/Home";
-import Navbar from "../Pages/Navbar";
 import Tuitions from "../Pages/Tuitions";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
@@ -9,6 +8,10 @@ import MainLoyouts from "../Layouts/MainLoyouts";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import ProfileSettings from "../Pages/Dashboard/Common/ProfileSettings";
+import PostNewTuition from "../Pages/Dashboard/Student/PostNewTuition";
+import MyTuitions from "../Pages/Dashboard/Student/MyTuitions";
+import AppliedTutors from "../Pages/Dashboard/Student/AppliedTutors";
 
 
 const router = createBrowserRouter([
@@ -58,8 +61,20 @@ const router = createBrowserRouter([
         element: (<DashboardLayout />),
         children: [
             {
-                path: '',
-                // element:<Sakib/>
+                path:'setting',
+                element:<ProfileSettings/>
+            },
+            {
+                path:'posttuition',
+                element:<PostNewTuition/>
+            },
+            {
+                path:'mytuitions',
+                element:<MyTuitions/>
+            },
+            {
+                path:'applietutors',
+                element:<AppliedTutors/>
             }
         ]
     }

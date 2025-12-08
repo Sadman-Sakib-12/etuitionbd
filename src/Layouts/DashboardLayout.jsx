@@ -5,9 +5,9 @@ import Sidebar from '../componet/Dashboard/Sidebar/Menu/Sidebar'
 const DashboardLayout = () => {
   return (
     <div>
-      <div className=' mx-auto' >
+      <div className='relative min-h-screen md:flex bg-white' >
         <Sidebar />
-        <main >
+        <main className='flex-1' >
           <Outlet />
         </main>
 

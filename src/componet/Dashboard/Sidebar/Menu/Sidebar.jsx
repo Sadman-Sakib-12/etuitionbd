@@ -13,19 +13,42 @@ const Sidebar = () => {
                     <nav className='mt-6'>
                         <ul>
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Tuitions</Link>
+                                <Link to='mytuitions' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Tuitions</Link>
                             </li>
 
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Post New Tuition</Link>
+                                <Link to='posttuition' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Post New Tuition</Link>
                             </li>
 
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Applied Tutors</Link>
+                                <Link to='applietutors' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Applied Tutors</Link>
                             </li>
-
+                            
                             <li>
                                 <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Payments</Link>
+                            </li>
+                            <h1>Tutor</h1>
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Applications</Link>
+                            </li>
+
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tutor Ongoing</Link>
+                            </li>
+
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Revenue History</Link>
+                            </li>
+
+                            <h1>Admin</h1>
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>User Management</Link>
+                            </li>
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tuition Management</Link>
+                            </li>
+                            <li>
+                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'> Reports & Analytics</Link>
                             </li>
                         </ul>
                     </nav>
@@ -34,7 +57,7 @@ const Sidebar = () => {
                 <div className='mb-6'>
                     <ul>
                         <li>
-                            <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Profile Settings</Link>
+                            <Link to='setting' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Profile Settings</Link>
                         </li>
                         <li><button onClick={logout} className='w-full text-left px-6 py-3 hover:bg-red-100 rounded text-red-600 '>Logout</button></li>
                     </ul>
