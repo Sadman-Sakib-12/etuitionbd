@@ -12,6 +12,12 @@ import ProfileSettings from "../Pages/Dashboard/Common/ProfileSettings";
 import PostNewTuition from "../Pages/Dashboard/Student/PostNewTuition";
 import MyTuitions from "../Pages/Dashboard/Student/MyTuitions";
 import AppliedTutors from "../Pages/Dashboard/Student/AppliedTutors";
+import TuitionManagement from "../Pages/Dashboard/Admin/TuitionManagement";
+import UserManagement from "../Pages/Dashboard/Admin/UserManagement";
+import ReportsAnalytics from "../Pages/Dashboard/Admin/ReportsAnalytics";
+import MyApplications from "../Pages/Dashboard/Tutor/MyApplications";
+import OngoingTuition from "../Pages/Dashboard/Tutor/OngoingTuition";
+import RevenueHistory from "../Pages/Dashboard/Tutor/RevenueHistory";
 
 
 const router = createBrowserRouter([
@@ -75,6 +81,30 @@ const router = createBrowserRouter([
             {
                 path:'applietutors',
                 element:<AppliedTutors/>
+            },
+            {
+                path:'tuitionmanagement',
+                element:<TuitionManagement/>
+            },
+            {
+                path:'usermangement',
+                element:<UserManagement/>
+            },
+            {
+                path:'reportsanalytics',
+                element:<ReportsAnalytics/>
+            },
+            {
+                path:'myapplications',
+                element:<MyApplications/>
+            },
+            {
+                path:'ongoingtuition',
+                element:<OngoingTuition/>
+            },
+            {
+                path:'revenuehistory',
+                element:<RevenueHistory/>
             }
         ]
     }

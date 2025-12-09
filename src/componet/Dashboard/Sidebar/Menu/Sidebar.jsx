@@ -29,26 +29,26 @@ const Sidebar = () => {
                             </li>
                             <h1>Tutor</h1>
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Applications</Link>
+                                <Link to='myapplications' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Applications</Link>
                             </li>
 
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tutor Ongoing</Link>
+                                <Link to='ongoingtuition' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tutor Ongoing</Link>
                             </li>
 
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Revenue History</Link>
+                                <Link to='revenuehistory' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Revenue History</Link>
                             </li>
 
                             <h1>Admin</h1>
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>User Management</Link>
+                                <Link to='usermangement' className='block px-6 py-3 hover:bg-indigo-100 rounded'>User Management</Link>
                             </li>
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tuition Management</Link>
+                                <Link to='tuitionmanagement' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tuition Management</Link>
                             </li>
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'> Reports & Analytics</Link>
+                                <Link to='reportsanalytics' className='block px-6 py-3 hover:bg-indigo-100 rounded'> Reports & Analytics</Link>
                             </li>
                         </ul>
                     </nav>

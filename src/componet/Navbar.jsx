@@ -3,10 +3,11 @@ import { useContext } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router'
 import { AuthContext } from '../context/AuthContext'
+import useAuth from '../hooks/useAuth'
 
 
 const Navbar = () => {
-    const { user, logout } = use(AuthContext)
+    const { user, logout } = useAuth()
     const [isOpen, setIsOpen] = useState(true)
     const navLinks = (
         <>
