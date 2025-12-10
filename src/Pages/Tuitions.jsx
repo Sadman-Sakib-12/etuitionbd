@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import useAuth from '../hooks/useAuth'
+import Applymodal from '../componet/Modal/Applymodal'
 
 const Tuitions = () => {
-  const { user } = useAuth()
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedTuition, setselectedTuition] = useState(null)
   const axiosSecure = axios.create({
     baseURL: 'http://localhost:3000/',
     withCredentials: true
@@ -34,7 +35,12 @@ const Tuitions = () => {
               <p>Budget: ${tuition.budget}</p>
               {/* <p>Status: <span className="text-green-600 font-semibold">{tuition.status}</span></p> */}
             </div>
-            <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded">Apply</button>
+            <button
+             onClick={() => setIsOpen(true) } 
+             className="mt-4 bg-green-600 text-white px-4 py-2 rounded">Apply
+
+            </button>
+            {isOpen && <Applymodal  setIsOpen={setIsOpen} />}
           </div>
         ))}
       </div>

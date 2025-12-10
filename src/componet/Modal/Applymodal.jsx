@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAuth from '../../hooks/useAuth'
+import {  Dialog, Transition, TransitionChild } from '@headlessui/react'
+import { useMutation } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
 
-const Applymodal = () => {
+const Applymodal = ({setIsOpen}) => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const { isPending, mutateAsync, reset: mutationReset } = useMutation({
@@ -13,15 +16,16 @@ const Applymodal = () => {
         onError: error => console.log(error),
         retry: 3,
     })
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async data => {
         const tuitionData = {
-            name: user?.name,
+            name: user?.displayName,
             email: user?.email,
             qualifications: data.qualifications,
-            experince: data.experince,
-            expectedSalary: data.expectedSalary,
+            experience: data.experience,
+            expectedSalary:data.ExpectedSalary,
+            tutorId:user?._id,
             status: 'Pending',
         }
         try {
@@ -32,9 +36,9 @@ const Applymodal = () => {
         }
     }
     return (
-        <div> <Transition appear show={isOpen} as={Fragment}>
+        <div> <Transition appear show={true} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
-                <Transition.Child
+                <TransitionChild
                     as={Fragment}
                     enter="ease-out duration-300"
                     enterFrom="opacity-0"
@@ -44,7 +48,7 @@ const Applymodal = () => {
                     leaveTo="opacity-0"
                 >
                     <div className="fixed inset-0 bg-black bg-opacity-30" />
-                </Transition.Child>
+                </TransitionChild>
 
                 <div className="fixed inset-0 overflow-y-auto">
                     <div className="flex min-h-full items-center justify-center p-4">
@@ -59,12 +63,12 @@ const Applymodal = () => {
                         >
                             <Dialog.Panel className="w-full max-w-md bg-white rounded p-6 shadow-lg">
                                 <Dialog.Title className="text-xl font-bold mb-4">Apply for Tuition</Dialog.Title>
-                                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
                                     <label>
                                         Name:
                                         <input
                                             type="text"
-                                            value={user?.name}
+                                            value={user?.displayName}
                                             readOnly
                                             className="w-full border px-2 py-1 rounded mt-1 bg-gray-100"
                                         />
@@ -82,31 +86,35 @@ const Applymodal = () => {
                                         Qualifications:
                                         <input
                                             type="text"
-                                            
+                                            id='text'
                                             required
                                             className="w-full border px-2 py-1 rounded mt-1"
+                                            {...register('qualifications', { required: 'Qualifications is required', min: { value: 0, message: ' Qualificationsmust be positive' } })}
                                         />
+                                        {errors.qualifications && <p className="text-xs text-red-500">{errors.qualifications.message}</p>}
                                     </label>
                                     <label>
                                         Experience (years):
                                         <input
                                             type="number"
-                                       
+                                            id='number'
                                             required
                                             className="w-full border px-2 py-1 rounded mt-1"
+                                            {...register('experience', { required: 'Experience is required', min: { value: 0, message: ' Experience must be positive' } })}
                                         />
+                                        {errors.experience && <p className="text-xs text-red-500">{errors.experience.message}</p>}
                                     </label>
                                     <label>
                                         Expected Salary ($):
                                         <input
                                             type="number"
                                             id="number"
-                                            placeholder="Enter budget"
+                                            // placeholder="Enter budget"
                                             required
                                             className="w-full border px-2 py-1 rounded mt-1"
-                                            {...register('budget', { required: 'Salary is required', min: { value: 0, message: 'Salary must be positive' } })}
+                                            {...register('ExpectedSalary', { required: 'Expected Salary is required', min: { value: 0, message: 'Salary must be positive' } })}
                                         />
-                                        {errors.budget && <p className="text-xs text-red-500">{errors.budget.message}</p>}
+                                        {errors.salary && <p className="text-xs text-red-500">{errors.salary.message}</p>}
                                     </label>
 
                                     <div className="flex justify-end gap-3 mt-4">
@@ -130,7 +138,7 @@ const Applymodal = () => {
                     </div>
                 </div>
             </Dialog>
-        </Transition></div>
+        </Transition></div >
     )
 }
 
