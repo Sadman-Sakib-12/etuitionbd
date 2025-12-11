@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import useAuth from '../hooks/useAuth'
 import { saveOrUpdateUser } from '../utils'
-import { FaEye } from 'react-icons/fa6'
 
 const Login = () => {
   const { user,

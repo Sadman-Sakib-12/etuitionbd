@@ -21,7 +21,6 @@ const MyTuitions = () => {
 
   const tuitions = data || []
 
-  // শুধু Approved tuitions
   const approvedTuitions = tuitions.filter(t => t.status === activeTab)
 
   if (isLoading) return <div>Loading...</div>

@@ -7,7 +7,7 @@ const Tuitions = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedTuition, setselectedTuition] = useState(null)
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL:'http://localhost:3000',
     withCredentials: true
   })
   const { data, isLoading, error } = useQuery({

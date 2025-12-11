@@ -6,7 +6,6 @@ import Contact from "../Pages/Contact";
 import Tutors from "../Pages/Tutors";
 import MainLoyouts from "../Layouts/MainLoyouts";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ProfileSettings from "../Pages/Dashboard/Common/ProfileSettings";
 import PostNewTuition from "../Pages/Dashboard/Student/PostNewTuition";
@@ -18,6 +17,8 @@ import ReportsAnalytics from "../Pages/Dashboard/Admin/ReportsAnalytics";
 import MyApplications from "../Pages/Dashboard/Tutor/MyApplications";
 import OngoingTuition from "../Pages/Dashboard/Tutor/OngoingTuition";
 import RevenueHistory from "../Pages/Dashboard/Tutor/RevenueHistory";
+import Error from "../Pages/Error";
+import Login from "../Pages/Login";
 
 
 const router = createBrowserRouter([
@@ -55,58 +56,62 @@ const router = createBrowserRouter([
 
     {
         path: '/login',
-        element: <Login />
+        element: <Login/>
     },
     {
         path: '/regiter',
-        element: <Register/>
+        element: <Register />
     },
-
+    {
+        path: '*',
+        element: <Error />
+    },
     {
         path: '/dashboard',
         element: (<DashboardLayout />),
         children: [
             {
-                path:'setting',
-                element:<ProfileSettings/>
+                path: 'setting',
+                element: <ProfileSettings />
             },
             {
-                path:'posttuition',
-                element:<PostNewTuition/>
+                path: 'posttuition',
+                element: <PostNewTuition />
             },
             {
-                path:'mytuitions',
-                element:<MyTuitions/>
+                path: 'mytuitions',
+                element: <MyTuitions />
             },
             {
-                path:'applietutors',
-                element:<AppliedTutors/>
+                path: 'applietutors',
+                element: <AppliedTutors />
             },
             {
-                path:'tuitionmanagement',
-                element:<TuitionManagement/>
+                path: 'tuitionmanagement',
+                element: <TuitionManagement />
             },
             {
-                path:'usermangement',
-                element:<UserManagement/>
+                path: 'usermangement',
+                element: <UserManagement />
             },
             {
-                path:'reportsanalytics',
-                element:<ReportsAnalytics/>
+                path: 'reportsanalytics',
+                element: <ReportsAnalytics />
             },
             {
-                path:'myapplications',
-                element:<MyApplications/>
+                path: 'myapplications',
+                element: <MyApplications />
             },
             {
-                path:'ongoingtuition',
-                element:<OngoingTuition/>
+                path: 'ongoingtuition',
+                element: <OngoingTuition />
             },
             {
-                path:'revenuehistory',
-                element:<RevenueHistory/>
+                path: 'revenuehistory',
+                element: <RevenueHistory />
             }
         ]
+
     }
 
 

@@ -1,7 +1,33 @@
+import { useMutation, useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import React from 'react'
-import { FaCheck, FaTimes } from 'react-icons/fa'
+import { FaCheck, FaCheckCircle, FaTimes, FaTimesCircle } from 'react-icons/fa'
+import useAuth from '../../../hooks/useAuth'
 
 const AppliedTutors = () => {
+    const { user } = useAuth()
+    const axiosSecure = axios.create({
+        baseURL: 'http://localhost:3000',
+        withCredentials: true
+    })
+    const { data, refetch, isLoading } = useQuery({
+        queryKey: ['alltutor'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/tutor')
+            return res.data
+        }
+    })
+    const tutor = data || []
+    const { mutateAsync: updateStatus } = useMutation({
+        mutationFn: async ({ id, status }) => {
+            const res = await axiosSecure.patch(`/tutor/${id}`, { status })
+            return res.data
+        },
+        onSuccess: () => {
+            refetch()
+        },
+        onError: (err) => console.log(err)
+    })
     return (
         <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">
             <h2 className="text-2xl font-semibold mb-6">Applied Tutors</h2>
@@ -11,56 +37,49 @@ const AppliedTutors = () => {
             )} */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* {applications.map(app => ( */}
+                {tutor.map(app => (
                     <div
                         // key={app._id}
                         className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between"
                     >
                         <div className="flex items-center gap-3 mb-3">
                             <img
-                                // src={app.tutor.photoURL || '/default-avatar.png'}
-                                // alt={app.tutor.name}
+                                src={user?.photoURL || '/default-avatar.png'}
+                                alt={app.name}
                                 className="w-12 h-12 rounded-full object-cover"
                             />
-                            <h3 className="text-lg font-semibold"></h3>
-                            {/* {app.tutor.name} */}
+                            <h3 className="text-lg font-semibold">    {app.name}</h3>
+
                         </div>
-                        <p><strong>Qualifications:</strong> </p>
-                        {/* {app.tutor.qualifications} */}
-                        <p><strong>Experience:</strong>  years</p>
-                        {/* {app.tutor.experience} */}
-                        <p><strong>Expected Salary:</strong> </p>
-                        {/* ${app.tutor.expectedSalary} */}
+                        <p><strong>Qualifications: {app.qualifications}</strong> </p>
+
+                        <p><strong>Experience:</strong> {app.experience} years</p>
+
+                        <p><strong>Expected Salary:    ${app.expectedSalary}</strong> </p>
+
                         <p className="mt-2">
-                            <strong>Status:</strong> 
+                            <strong>Status:{app.status}</strong>
                         </p>
-                        {/* {app.status} */}
+                        
 
-                        <div className="flex justify-end gap-3 mt-4">
-                            <button
-                                // onClick={() => handleApprove(app._id)}
-                                // disabled={app.status !== 'Pending'}
-                                // className={`flex items-center gap-1 px-3 py-1 rounded ${app.status === 'Pending'
-                                //         ? 'bg-green-500 text-white hover:bg-green-600'
-                                //         : 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                                //     }`}
-                            >
-                                <FaCheck /> Approve
-                            </button>
-
-                            <button
-                                // onClick={() => handleReject(app._id)}
-                                // disabled={app.status !== 'Pending'}
-                                // className={`flex items-center gap-1 px-3 py-1 rounded ${app.status === 'Pending'
-                                //         ? 'bg-red-500 text-white hover:bg-red-600'
-                                //         : 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                                //     }`}
-                            >
-                                <FaTimes /> Reject
-                            </button>
-                        </div>
+                        {app.status === 'Pending' && (
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => updateStatus({ id: app._id, status: 'Approved' })}
+                                    className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+                                >
+                                    <FaCheckCircle /> Approve
+                                </button>
+                                <button
+                                    onClick={() => updateStatus({ id: app._id, status: 'Rejected' })}
+                                    className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+                                >
+                                    <FaTimesCircle /> Reject
+                                </button>
+                            </div>
+                        )}
                     </div>
-                {/* ))} */}
+                ))}
             </div>
         </div>
     )
