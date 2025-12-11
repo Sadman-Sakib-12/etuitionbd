@@ -21,6 +21,7 @@ import Error from "../Pages/Error";
 import Login from "../Pages/Login";
 import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSucces";
 import ViewProfile from "../componet/ViewProfile";
+import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
             {
                 path: 'reportsanalytics',
                 element: <ReportsAnalytics />
+            },
+            {
+                path: 'payment',
+                element: <PaymentHistory/>
             },
             {
                 path: 'myapplications',

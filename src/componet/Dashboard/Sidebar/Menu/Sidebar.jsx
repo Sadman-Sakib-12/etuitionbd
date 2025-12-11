@@ -25,7 +25,7 @@ const Sidebar = () => {
                             </li>
                             
                             <li>
-                                <Link to='' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Payments</Link>
+                                <Link to='payment' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Payments</Link>
                             </li>
                             <h1>Tutor</h1>
                             <li>
