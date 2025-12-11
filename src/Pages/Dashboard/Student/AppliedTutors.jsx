@@ -18,71 +18,75 @@ const AppliedTutors = () => {
         }
     })
     const tutor = data || []
-    const { mutateAsync: updateStatus } = useMutation({
-        mutationFn: async ({ id, status }) => {
-            const res = await axiosSecure.patch(`/tutor/${id}`, { status })
-            return res.data
-        },
-        onSuccess: () => {
-            refetch()
-        },
-        onError: (err) => console.log(err)
-    })
-    return (
-        <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">
-            <h2 className="text-2xl font-semibold mb-6">Applied Tutors</h2>
+    const handlePayment = async (app) => {
+        try {
+            const res = await axiosSecure.post('/create-checkout-session', {
+                tutorId: app._id,
+                name: app.name,
+                price: app.expectedSalary,
+                student: user
+            });
 
-            {/* {applications.length === 0 && (
+            window.location.href = res.data.url; // redirect to Stripe
+        } catch (error) {
+            console.log(error);
+        }
+    };
+return (
+    <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">
+        <h2 className="text-2xl font-semibold mb-6">Applied Tutors</h2>
+
+        {/* {applications.length === 0 && (
                 <p className="text-gray-500">No tutor applications received yet.</p>
             )} */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tutor.map(app => (
-                    <div
-                        // key={app._id}
-                        className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between"
-                    >
-                        <div className="flex items-center gap-3 mb-3">
-                            <img
-                                src={user?.photoURL || '/default-avatar.png'}
-                                alt={app.name}
-                                className="w-12 h-12 rounded-full object-cover"
-                            />
-                            <h3 className="text-lg font-semibold">    {app.name}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tutor.map(app => (
+                <div
+                    // key={app._id}
+                    className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between"
+                >
+                    <div className="flex items-center gap-3 mb-3">
+                        <img
+                            src={user?.photoURL || '/default-avatar.png'}
+                            alt={app.name}
+                            className="w-12 h-12 rounded-full object-cover"
+                        />
+                        <h3 className="text-lg font-semibold">    {app.name}</h3>
 
-                        </div>
-                        <p><strong>Qualifications: {app.qualifications}</strong> </p>
-
-                        <p><strong>Experience:</strong> {app.experience} years</p>
-
-                        <p><strong>Expected Salary:    ${app.expectedSalary}</strong> </p>
-
-                        <p className="mt-2">
-                            <strong>Status:{app.status}</strong>
-                        </p>
-                        
-
-                        {app.status === 'Pending' && (
-                            <div className="flex gap-3">
-                                <button
-                                    onClick={() => updateStatus({ id: app._id, status: 'Approved' })}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
-                                >
-                                    <FaCheckCircle /> Approve
-                                </button>
-                                <button
-                                    onClick={() => updateStatus({ id: app._id, status: 'Rejected' })}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
-                                >
-                                    <FaTimesCircle /> Reject
-                                </button>
-                            </div>
-                        )}
                     </div>
-                ))}
-            </div>
+                    <p><strong>Qualifications: {app.qualifications}</strong> </p>
+
+                    <p><strong>Experience:</strong> {app.experience} years</p>
+
+                    <p><strong>Expected Salary:${app.expectedSalary}</strong> </p>
+
+                    <p className="mt-2">
+                        <strong>Status:{app.status}</strong>
+                    </p>
+
+
+                    {app.status === 'Pending' && (
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() =>handlePayment(app)}
+                                className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+                            >
+                                <FaCheckCircle /> Approve
+                            </button>
+                            <button
+                                onClick={() => updateStatus({ id: app._id, status: 'Rejected' })}
+                                className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+                            >
+                                <FaTimesCircle /> Reject
+                            </button>
+                        </div>
+                    )}
+                </div>
+            ))}
         </div>
-    )
+    </div>
+)
 }
 
 export default AppliedTutors

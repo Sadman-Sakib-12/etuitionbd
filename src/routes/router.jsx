@@ -19,6 +19,8 @@ import OngoingTuition from "../Pages/Dashboard/Tutor/OngoingTuition";
 import RevenueHistory from "../Pages/Dashboard/Tutor/RevenueHistory";
 import Error from "../Pages/Error";
 import Login from "../Pages/Login";
+import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSucces";
+import ViewProfile from "../componet/ViewProfile";
 
 
 const router = createBrowserRouter([
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/tuitions',
                 element: <Tuitions />
+            },
+            {
+                path: '/tutor/:id',
+                element: <ViewProfile/>
             },
 
             {
@@ -56,12 +62,13 @@ const router = createBrowserRouter([
 
     {
         path: '/login',
-        element: <Login/>
+        element: <Login />
     },
     {
         path: '/regiter',
         element: <Register />
     },
+
     {
         path: '*',
         element: <Error />
@@ -93,6 +100,10 @@ const router = createBrowserRouter([
             {
                 path: 'usermangement',
                 element: <UserManagement />
+            },
+            {
+                path: 'payment-success',
+                element: <PaymentSuccess />
             },
             {
                 path: 'reportsanalytics',
