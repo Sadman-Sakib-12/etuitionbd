@@ -7,16 +7,11 @@ const RevenueHistory = () => {
 
     useEffect(() => {
         const fetchPayments = async () => {
-            try {
                 const res = await axios.get(`${import.meta.env.VITE_API_URL}/payment`);
                 setTransactions(res.data);
-
                 // Calculate total revenue
                 const total = res.data.reduce((sum, t) => sum + t.amount, 0);
                 setTotalRevenue(total);
-            } catch (error) {
-                console.error("Failed to fetch payments:", error);
-            }
         };
         fetchPayments();
     }, []);

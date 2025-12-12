@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
+import Swal from 'sweetalert2'
 
 const MyApplications = () => {
     const [activeTab, setActiveTab] = useState()
@@ -10,13 +11,35 @@ const MyApplications = () => {
         withCredentials: true
     })
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading,refetch } = useQuery({
         queryKey: ['alltutor'],
         queryFn: async () => {
             const res = await axiosSecure.get('/tutor')
             return res.data
         }
     })
+    const handleDelete = async (app) => {
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "This will delete your application!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        })
+
+        if (result.isConfirmed) {
+            try {
+                await axiosSecure.delete(`/tutor/${app._id}`)
+                refetch()
+                Swal.fire('Deleted!', 'Application has been deleted.', 'success')
+            } catch (err) {
+                console.error(err)
+                Swal.fire('Error', 'Failed to delete application.', 'error')
+            }
+        }
+    }
 
     const tutor = data || []
     return (
@@ -46,10 +69,10 @@ const MyApplications = () => {
 
                                     <td
                                         className={`py-2 px-4 font-semibold ${app.status === "Approved"
-                                                ? "text-green-600"
-                                                : app.status === "Pending"
-                                                    ? "text-yellow-600"
-                                                    : "text-red-600"
+                                            ? "text-green-600"
+                                            : app.status === "Pending"
+                                                ? "text-yellow-600"
+                                                : "text-red-600"
                                             }`}
                                     >
                                         {app.status}
@@ -61,7 +84,7 @@ const MyApplications = () => {
                                                 <button className="flex items-center gap-1 text-blue-600 hover:text-blue-800">
                                                     <FaEdit /> Edit
                                                 </button>
-                                                <button className="flex items-center gap-1 text-red-600 hover:text-red-800">
+                                                <button onClick={()=>handleDelete(app)} className="flex items-center gap-1 text-red-600 hover:text-red-800">
                                                     <FaTrash /> Delete
                                                 </button>
                                             </div>
@@ -74,51 +97,7 @@ const MyApplications = () => {
                 </div>
 
             </div>
-
-            {/* Edit Modal */}
-            {/* {editingApp && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded w-96">
-                        <h2 className="text-xl font-bold mb-4">Edit Application</h2>
-                        <label className="block mb-2">
-                            Experience (yrs):
-                            <input
-                                type="number"
-                                value={editingApp.experience}
-                                onChange={(e) =>
-                                    setEditingApp({ ...editingApp, experience: e.target.value })
-                                }
-                                className="w-full border px-2 py-1 rounded mt-1"
-                            />
-                        </label>
-                        <label className="block mb-4">
-                            Expected Salary ($):
-                            <input
-                                type="number"
-                                value={editingApp.expectedSalary}
-                                onChange={(e) =>
-                                    setEditingApp({ ...editingApp, expectedSalary: e.target.value })
-                                }
-                                className="w-full border px-2 py-1 rounded mt-1"
-                            />
-                        </label>
-                        <div className="flex justify-end gap-2">
-                            <button
-                                onClick={() => setEditingApp(null)}
-                                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleUpdate}
-                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                                Update
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )} */}
+               
         </div>
     )
 }

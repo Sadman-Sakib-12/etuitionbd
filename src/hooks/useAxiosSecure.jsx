@@ -12,12 +12,12 @@ const useAxiosSecure = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (!loading && user?.accessToken) {
-            // const requestIn = axiosInstance.interceptors.request.use(
-            //     config => {
-            //         config.headers.Authorization = `Bearer ${user.accessToken}`
-            //         return config
-            //     }
-            // )
+            const requestIn = axiosInstance.interceptors.request.use(
+                config => {
+                    config.headers.Authorization = `Bearer ${user.accessToken}`
+                    return config
+                }
+            )
 
             const responseInterceptor = axiosInstance.interceptors.response.use(
                 res => res,
@@ -34,7 +34,7 @@ const useAxiosSecure = () => {
                 }
             )
             return () => {
-                // axiosInstance.interceptors.request.eject(requestIn)
+                axiosInstance.interceptors.request.eject(requestIn)
                 axiosInstance.interceptors.response.eject(responseInterceptor)
             }
         }

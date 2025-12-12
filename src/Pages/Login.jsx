@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import useAuth from '../hooks/useAuth'
 import { saveOrUpdateUser } from '../utils'
 
@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
+    if (user) return <Navigate to={from} replace={true} />
 
   const hanldesubmit = async event => {
     event.preventDefault()
