@@ -1,8 +1,10 @@
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const ViewProfile = () => {
+        const { user } = useAuth()
   const { id } = useParams();
 
   const axiosSecure = axios.create({
@@ -30,7 +32,7 @@ const ViewProfile = () => {
 
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
         <img
-          src={tutor.photoURL|| "/default-avatar.png"}
+          src={user?.photoURL}
           alt=''
           className="w-32 h-32 rounded-full object-cover border-2 border-indigo-500"
         />
@@ -45,16 +47,6 @@ const ViewProfile = () => {
           </p>
           <p className="text-gray-700 mb-1">
             <strong>Expected Salary:</strong> ${tutor.expectedSalary}
-          </p>
-          <p className="text-gray-700 mt-2">
-            <strong>Status:</strong>{" "}
-            <span
-              className={`font-semibold ${
-                tutor.status === "Approved" ? "text-green-600" : "text-red-500"
-              }`}
-            >
-              {tutor.status}
-            </span>
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ const StudentMenu = () => {
             <aside className='w-64 bg-white shadow-md flex flex-col justify-between'>
                 <div>
                     <div className='p-6 text-2xl font-bold text-indigo-600'>
-                        <Link to='/'>Studen</Link></div>
+                        <Link to='/'>Student Dashboard</Link></div>
                     <nav className='mt-6'>
                         <ul>
                             <li>

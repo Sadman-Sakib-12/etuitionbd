@@ -6,12 +6,9 @@ const AdminMenu = () => {
             <aside className='w-64 bg-white shadow-md flex flex-col justify-between'>
                 <div>
                     <div className='p-6 text-2xl font-bold text-indigo-600'>
-                        <Link to='/'>Dashboard</Link></div>
+                        <Link to='/'>Admin Dashboard</Link></div>
                     <nav className='mt-6'>
                         <ul>
-                     
-
-                            <h1>Admin</h1>
                             <li>
                                 <Link to='usermangement' className='block px-6 py-3 hover:bg-indigo-100 rounded'>User Management</Link>
                             </li>
