@@ -22,6 +22,8 @@ import Login from "../Pages/Login";
 import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSucces";
 import ViewProfile from "../componet/ViewProfile";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import PrivateRouter from "../Providers/PrivateRouter";
+import Adminroute from "./Adminroute";
 
 
 const router = createBrowserRouter([
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/tutor/:id',
-                element: <ViewProfile/>
+                element: <ViewProfile />
             },
 
             {
@@ -76,55 +78,74 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: (<DashboardLayout />),
+        element: (
+            <PrivateRouter>
+                <DashboardLayout />
+            </PrivateRouter>
+        ),
         children: [
             {
                 path: 'setting',
-                element: <ProfileSettings />
+                element: (<PrivateRouter><ProfileSettings /></PrivateRouter>)
             },
             {
                 path: 'posttuition',
-                element: <PostNewTuition />
+                element: (<PrivateRouter><PostNewTuition /></PrivateRouter>)
             },
             {
                 path: 'mytuitions',
-                element: <MyTuitions />
+                element: (<PrivateRouter><MyTuitions /></PrivateRouter>)
             },
             {
                 path: 'applietutors',
-                element: <AppliedTutors />
+                element: (<PrivateRouter><AppliedTutors /></PrivateRouter>)
             },
             {
                 path: 'tuitionmanagement',
-                element: <TuitionManagement />
+                element: (
+                    <PrivateRouter>
+                        <Adminroute>
+                            <TuitionManagement />
+                        </Adminroute>
+                    </PrivateRouter>)
             },
             {
                 path: 'usermangement',
-                element: <UserManagement />
+                element: (
+                    <PrivateRouter>
+                        <Adminroute>
+                            <UserManagement />
+                        </Adminroute>
+                    </PrivateRouter>)
             },
             {
                 path: 'payment-success',
-                element: <PaymentSuccess />
+                element: (<PrivateRouter> <PaymentSuccess /></PrivateRouter>)
             },
             {
                 path: 'reportsanalytics',
-                element: <ReportsAnalytics />
+                element: (
+                    <PrivateRouter>
+                        <Adminroute>
+                            <ReportsAnalytics />
+                        </Adminroute>
+                    </PrivateRouter>)
             },
             {
                 path: 'payment',
-                element: <PaymentHistory/>
+                element: (<PrivateRouter><PaymentHistory /></PrivateRouter>)
             },
             {
                 path: 'myapplications',
-                element: <MyApplications />
+                element: (<PrivateRouter><MyApplications /></PrivateRouter>)
             },
             {
                 path: 'ongoingtuition',
-                element: <OngoingTuition />
+                element: (<PrivateRouter><OngoingTuition /></PrivateRouter>)
             },
             {
                 path: 'revenuehistory',
-                element: <RevenueHistory />
+                element: (<PrivateRouter><RevenueHistory /></PrivateRouter>)
             }
         ]
 
