@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import Swal from 'sweetalert2'
+import EditModal from '../../../componet/Modal/EditModal'
+import MyApplicationModal from '../../../componet/Modal/MyApplicationModal'
 
 const MyApplications = () => {
-    const [activeTab, setActiveTab] = useState()
+    const [editingTuition, setEditingTuition] = useState(null)
     const axiosSecure = axios.create({
         baseURL: 'http://localhost:3000',
         withCredentials: true
     })
 
-    const { data, isLoading,refetch } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ['alltutor'],
         queryFn: async () => {
             const res = await axiosSecure.get('/tutor')
@@ -40,6 +42,23 @@ const MyApplications = () => {
             }
         }
     }
+    const handleUpdate = async () => {
+        try {
+            await axiosSecure.patch(`/tutor/${editingTuition._id}`, {
+                qualifications: editingTuition.qualifications,
+                experience: editingTuition.experience,
+                expectedSalary: editingTuition.expectedSalary,
+                status: "Pending"
+            });
+            refetch();
+            Swal.fire('Submitted!', 'Tuition update sent for approval.', 'success');
+            setEditingTuition(null);
+        } catch (err) {
+            console.error(err);
+            Swal.fire('Error', 'Failed to update tuition.', 'error');
+        }
+    };
+
 
     const tutor = data || []
     return (
@@ -81,10 +100,10 @@ const MyApplications = () => {
                                     <td className="py-2 px-4 flex justify-center gap-2">
                                         {(app.status === "Pending" || app.status === "Rejected") && (
                                             <div className="flex justify-end gap-3 mt-4">
-                                                <button className="flex items-center gap-1 text-blue-600 hover:text-blue-800">
+                                                <button onClick={() => setEditingTuition(app)} className="flex items-center gap-1 text-blue-600 hover:text-blue-800">
                                                     <FaEdit /> Edit
                                                 </button>
-                                                <button onClick={()=>handleDelete(app)} className="flex items-center gap-1 text-red-600 hover:text-red-800">
+                                                <button onClick={() => handleDelete(app)} className="flex items-center gap-1 text-red-600 hover:text-red-800">
                                                     <FaTrash /> Delete
                                                 </button>
                                             </div>
@@ -93,11 +112,16 @@ const MyApplications = () => {
                                 </tr>
                             ))}
                         </tbody>
+                        {editingTuition && (
+                            <MyApplicationModal editingTuition={editingTuition}
+                                setEditingTuition={setEditingTuition}
+                                handleUpdate={handleUpdate} />
+                        )}
                     </table>
                 </div>
 
             </div>
-               
+
         </div>
     )
 }
