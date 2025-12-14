@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
-import { FaCheck, FaCheckCircle, FaTimes, FaTimesCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
 import useAuth from '../../../hooks/useAuth'
 
 const AppliedTutors = () => {
@@ -18,81 +18,102 @@ const AppliedTutors = () => {
         }
     })
     const tutor = data || []
-const handlePayment = async (app) => {
-  try {
-    const res = await axiosSecure.post('/create-checkout-session', {
-      tutorId: app._id,
-      name: user?.displayName,
-      price: Number(app.expectedSalary), 
-      student: {
-        name: user?.displayName,
-        email: user?.email,
-      }
-    });
 
-    window.location.href = res.data.url;
-  } catch (error) {
-    console.log("Payment error:", error);
-  }
-};
+    const handlePayment = async (app) => {
+            const res = await axiosSecure.post('/create-checkout-session', {
+                tutorId: app._id,
+                tuitionId: app.tuitionId, 
+                name: app.name,
+                price: Number(app.expectedSalary),
+                student: {
+                    name: user?.displayName,
+                    email: user?.email, 
+                }
+            });
+            window.location.href = res.data.url;
+       
+    };
+
+
     const handleReject = async (app) => {
         try {
             await axiosSecure.patch(`/tutor/${app._id}`, {
                 status: 'Rejected'
             });
-            refetch(); // refresh data after rejection
+            refetch(); 
         } catch (error) {
             console.error("Failed to reject tutor:", error);
+            alert("Failed to reject tutor.");
         }
     }
+
+    if (isLoading) return <p className="p-6 text-center">Loading Applications...</p>
+
     return (
         <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">
-            <h2 className="text-2xl font-semibold mb-6">Applied Tutors</h2>
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Applied Tutors 👨‍🏫</h2>
 
-            {/* {applications.length === 0 && (
-                <p className="text-gray-500">No tutor applications received yet.</p>
-            )} */}
+            {tutor.length === 0 && (
+                <p className="text-gray-500 italic">No tutor applications received yet.</p>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tutor.map(app => (
                     <div
-                        // key={app._id}
-                        className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between"
+                        key={app._id}
+                        className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between border-t-4 border-indigo-500"
                     >
-                        <div className="flex items-center gap-3 mb-3">
+                        <div className="flex items-center gap-4 mb-4">
                             <img
-                                src={user?.photoURL || '/default-avatar.png'}
+                                src={user?.photoURL || '/default-avatar.png'} 
                                 alt={app.name}
-                                className="w-12 h-12 rounded-full object-cover"
+                                className="w-14 h-14 rounded-full object-cover ring-2 ring-indigo-300"
                             />
-                            <h3 className="text-lg font-semibold">    {app.name}</h3>
-
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-900">{app.name}</h3>
+                                <p className="text-sm text-gray-600">{app.email}</p>
+                            </div>
                         </div>
-                        <p><strong>Qualifications: {app.qualifications}</strong> </p>
 
-                        <p><strong>Experience:</strong> {app.experience} years</p>
-
-                        <p><strong>Expected Salary:${app.expectedSalary}</strong> </p>
-
-                        <p className="mt-2">
-                            <strong>Status:{app.status}</strong>
-                        </p>
-
+                        <div className="space-y-1 mb-4 text-gray-700">
+                            <p>
+                                <strong>Qualifications:</strong> {app.qualifications}
+                            </p>
+                            <p>
+                                <strong>Experience:</strong> {app.experience} years
+                            </p>
+                            <p className="text-lg font-semibold text-green-700">
+                                <strong>Expected Salary:</strong> ${app.expectedSalary}
+                            </p>
+                            <p className="pt-2">
+                                <strong>Status:</strong>
+                                <span className={`font-semibold ml-1 ${app.status === 'Pending' ? 'text-yellow-600' : app.status === 'Approved' ? 'text-green-600' : 'text-red-600'}`}>
+                                    {app.status}
+                                </span>
+                            </p>
+                        </div>
 
                         {app.status === 'Pending' && (
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 mt-4">
                                 <button
                                     onClick={() => handlePayment(app)}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+                                    className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-200"
                                 >
-                                    <FaCheckCircle /> Approve
+                                    <FaCheckCircle /> Approve & Pay
                                 </button>
                                 <button
-                                onClick={()=>handleReject(app)}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+                                    onClick={() => handleReject(app)}
+                                    className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition duration-200"
                                 >
                                     <FaTimesCircle /> Reject
                                 </button>
+                            </div>
+                        )}
+                        {(app.status !== 'Pending') && (
+                            <div className="mt-4">
+                                <p className={`text-center py-2 rounded-lg font-bold ${app.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                    {app.status}
+                                </p>
                             </div>
                         )}
                     </div>

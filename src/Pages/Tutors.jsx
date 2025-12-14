@@ -29,7 +29,7 @@ const Tutors = () => {
                 {approvedTuitor.map((tutor) => (
                     <div key={tutor._id} className='bg-white p-6 shadow-lg rounded-lg flex flex-col items-center transition hover:shadow-xl'>
                         <img 
-                            src={user?.photoURL} 
+                            src={approvedTuitor.profileImage || 'avat'} 
                             alt='' 
                             className='w-28 h-28 rounded-full object-cover mb-4 border-2 border-indigo-500'
                         />

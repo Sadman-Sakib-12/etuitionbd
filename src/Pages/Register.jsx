@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import { saveOrUpdateUser } from '../utils';
 
 const Register = () => {
-    const { createUserWithEmail, signInWithGoogle, updateUserProfile } = useAuth();
+    const {  creatUserWithEamil, signInWithGoogle,  updateUsserProfile } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || '/';
@@ -17,8 +17,8 @@ const Register = () => {
     const onSubmit = async (data) => {
         const { name, email, password, phone } = data;
         try {
-            const result = await createUserWithEmail(email, password);
-            await updateUserProfile(name);
+            const result = await  creatUserWithEamil(email, password);
+            await  updateUsserProfile(name);
 
             // Save to DB
             await saveOrUpdateUser({

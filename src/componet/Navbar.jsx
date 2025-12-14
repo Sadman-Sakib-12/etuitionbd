@@ -4,6 +4,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router'
 import { AuthContext } from '../context/AuthContext'
 import useAuth from '../hooks/useAuth'
+import logo from '../assets/tuiton.jpg'
 
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
         </>
     )
     return (
-        <div className='sticky top-0 z-50 bg-green-400 shadow '>
+        <div className='sticky top-0 z-50 bg-green-200 shadow '>
             <div className='navbar max-w-7xl mx-auto flex items-center justify-between'>
                 {/* Left section */}
                 <div className='navbar-start'>
@@ -42,7 +43,10 @@ const Navbar = () => {
                             </ul>
                         )}
                     </div>
+                    <div className=' gap-2 items-center '>
+                        <img className='w-12 h-12 rounded-full' src={logo} alt="" />
 
+                    </div>
                     {/* Logo name */}
                     <Link to='/' className='font-bold text-2xl'>
                         <span className='text-primary '>Tuition</span>

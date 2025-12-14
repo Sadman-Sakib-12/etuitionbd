@@ -1,31 +1,32 @@
 import React, { Fragment, useState } from 'react'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAuth from '../../hooks/useAuth'
-import {  Dialog, Transition, TransitionChild } from '@headlessui/react'
+import { Dialog, Transition, TransitionChild } from '@headlessui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-
-const Applymodal = ({setIsOpen}) => {
+const Applymodal = ({ setIsOpen, tuition }) => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const { isPending, mutateAsync, reset: mutationReset } = useMutation({
         mutationFn: async apply => await axiosSecure.post('/tutor', apply),
         onSuccess: () => {
+            setIsOpen(false);
             mutationReset()
         },
         onError: error => console.log(error),
         retry: 3,
     })
-    // const [isOpen, setIsOpen] = useState(false)
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
     const onSubmit = async data => {
         const tuitionData = {
             name: user?.displayName,
             email: user?.email,
             qualifications: data.qualifications,
             experience: data.experience,
-            expectedSalary:data.ExpectedSalary,
-            tutorId:user?._id,
+            expectedSalary: data.ExpectedSalary,
+            tutorId: user?._id,
+            tuitionId: tuition._id,
             status: 'Pending',
         }
         try {
@@ -35,6 +36,8 @@ const Applymodal = ({setIsOpen}) => {
             console.log(err)
         }
     }
+
+
     return (
         <div> <Transition appear show={true} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
@@ -109,7 +112,6 @@ const Applymodal = ({setIsOpen}) => {
                                         <input
                                             type="number"
                                             id="number"
-                                            // placeholder="Enter budget"
                                             required
                                             className="w-full border px-2 py-1 rounded mt-1"
                                             {...register('ExpectedSalary', { required: 'Expected Salary is required', min: { value: 0, message: 'Salary must be positive' } })}

@@ -1,5 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import LatestTutors from '../componet/LatestTutors';
+import LatestTutionPost from '../componet/LatestTutionPost';
 const Home = () => {
   return (
     <div>
@@ -32,6 +34,9 @@ const Home = () => {
           </motion.button>
         </motion.div>
       </section>
+        <LatestTutionPost/>
+      <LatestTutors/>
+    
 
       <section className='p-10'>
         <h2 className='text-3xl font-bold mb-6 text-center'>How the Platform Works</h2>
