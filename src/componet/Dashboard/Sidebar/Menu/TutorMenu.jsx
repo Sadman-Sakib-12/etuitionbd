@@ -10,15 +10,15 @@ const TutorMenu = () => {
                     <nav className='mt-6'>
                         <ul>
                             <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink  className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"}to='myapplications'>My Applications</NavLink>
+                                <NavLink  className={({ isActive }) => isActive ? "bg-green-700 py-3 px-5 rounded-lg" : "hover:text-emerald-700"}to='myapplications'>My Applications</NavLink>
                             </li>
 
                             <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='ongoingtuition'>Tutor Ongoing</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-5 rounded-lg" : "hover:text-emerald-700"} to='ongoingtuition'>Tutor Ongoing</NavLink>
                             </li>
 
                             <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='revenuehistory' >Revenue History</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-8 rounded-lg" : "hover:text-emerald-700"} to='revenuehistory' >Revenue History</NavLink>
                             </li>
 
                          
