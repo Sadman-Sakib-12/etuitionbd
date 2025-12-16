@@ -15,11 +15,11 @@ const Footer = () => {
                 <div>
                     <h1>Quick Links</h1>
                     <ul className='space-y-2'>
-                        <li><Link>Home</Link></li>
-                        <li><Link>Tuitions</Link></li>
-                        <li><Link>Tutors</Link></li>
-                        <li><Link>About </Link></li>
-                        <li><Link>Contact</Link></li>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/tuitions'>Tuitions</Link></li>
+                        <li><Link to='/tutors'>Tutors</Link></li>
+                        <li><Link to='/About'>About </Link></li>
+                        <li><Link to='/Contact'>Contact</Link></li>
                     </ul>
                 </div>
 

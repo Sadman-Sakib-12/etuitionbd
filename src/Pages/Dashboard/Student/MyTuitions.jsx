@@ -47,13 +47,14 @@ const MyTuitions = () => {
       class: editingTuition.class,
       location: editingTuition.location,
       budget: editingTuition.budget,
-      status: 'Pending'
+      status: 'Pending' // optional, backend will also force it
     })
+
     refetch()
     Swal.fire('Updated!', 'Sent for re-approval.', 'success')
     setEditingTuition(null)
   }
-      if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
+  if (isLoading) return <p className="p-6 text-center"><LoadingSpin /></p>
 
   return (
     <div className="p-6 min-h-screen">

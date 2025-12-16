@@ -30,7 +30,7 @@ const Home = ({isLoading}) => {
             Connect with verified tutors and manage your tuitions easily.
           </motion.p>
           <motion.button
-            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded'
+            className='bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded'
             whileHover={{ scale: 1.1 }}>
             Get Started
           </motion.button>
