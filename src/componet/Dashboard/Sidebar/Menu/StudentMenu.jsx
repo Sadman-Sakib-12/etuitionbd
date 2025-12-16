@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 const StudentMenu = () => {
     return (
         <div className='flex min-h-screen bg-gray-100'>
@@ -9,20 +9,20 @@ const StudentMenu = () => {
                         <Link to='/'>Student Dashboard</Link></div>
                     <nav className='mt-6'>
                         <ul>
-                            <li>
-                                <Link to='mytuitions' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Tuitions</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='mytuitions'>My Tuitions</NavLink>
                             </li>
 
-                            <li>
-                                <Link to='posttuition' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Post New Tuition</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink  className={({ isActive }) => isActive ? "bg-green-700 py-3 px-8 rounded-lg" : "hover:text-emerald-700"}to='posttuition'>Post New Tuition</NavLink>
                             </li>
 
-                            <li>
-                                <Link to='applietutors' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Applied Tutors</Link>
+                            <li  className='block px-6 py-3  hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='applietutors' >Applied Tutors</NavLink>
                             </li>
 
-                            <li>
-                                <Link to='payment' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Payments</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='payment'>Payments</NavLink>
                             </li>
                         </ul>
                     </nav>

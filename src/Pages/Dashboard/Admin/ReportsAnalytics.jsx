@@ -41,7 +41,7 @@ const AdminReports = () => {
         label: 'Revenue Over Time',
         data: transactions.map(t => t.amount),
         fill: false,
-        borderColor: '#4ade80', // green
+        borderColor: '#4ade80', 
         tension: 0.1,
       },
     ],

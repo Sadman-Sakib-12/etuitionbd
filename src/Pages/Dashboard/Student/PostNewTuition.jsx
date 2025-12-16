@@ -5,11 +5,12 @@ import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { data } from 'react-router'
 import { FaIceCream } from 'react-icons/fa6'
+import LoadingSpin from '../../../componet/LoadingSpin'
 
 const PostNewTuition = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
-    const { isPending, mutateAsync, reset: mutationReset } = useMutation({
+    const { isLoading, mutateAsync, reset: mutationReset } = useMutation({
         mutationFn: async load => await axiosSecure.post('/tuition', load),
         onSuccess: () => {
             mutationReset()
@@ -38,6 +39,7 @@ const PostNewTuition = () => {
             console.log(err)
         }
     }
+     if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center bg-gray-50 rounded-xl p-6">
             <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg space-y-6">
@@ -98,7 +100,7 @@ const PostNewTuition = () => {
                     type="submit"
                     className="w-full p-3 text-white bg-lime-500 rounded-md font-medium flex justify-center items-center"
                 >
-                    {isPending ? <FaIceCream className="animate-spin" /> : 'Post Tuition'}
+                    {isLoading ? <FaIceCream className="animate-spin" /> : 'Post Tuition'}
                 </button>
             </form>
         </div>

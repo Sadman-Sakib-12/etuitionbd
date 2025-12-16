@@ -2,13 +2,14 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import LoadingSpin from "./LoadingSpin";
 
 const ViewProfile = () => {
         const { user } = useAuth()
   const { id } = useParams();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
   });
 
@@ -20,7 +21,7 @@ const ViewProfile = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p><LoadingSpin/></p>;
 
   if (!tutor) return <p>No tutor found</p>;
 

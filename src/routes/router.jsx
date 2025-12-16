@@ -120,7 +120,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment-success',
-                element: (<PrivateRouter> <PaymentSuccess /></PrivateRouter>)
+                element: (<PrivateRouter><PaymentSuccess /></PrivateRouter>)
             },
             {
                 path: 'reportsanalytics',

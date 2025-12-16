@@ -5,12 +5,13 @@ import AdminMenu from './AdminMenu'
 import useAuth from '../../../../hooks/useAuth'
 import useRole from '../../../../hooks/useRole'
 import StudentMenu from './StudentMenu'
+import LoadingSpin from '../../../LoadingSpin'
 
 const Sidebar = () => {
     const { user, logout } = useAuth()
     const [role, isRoleLoading] = useRole()
 
-    if (!user || isRoleLoading) return <div>Loading...</div>
+    if (!user || isRoleLoading) return <div><LoadingSpin/></div>
 
     return (
         <div className='flex min-h-screen bg-gray-100'>

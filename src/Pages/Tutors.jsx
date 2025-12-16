@@ -3,13 +3,13 @@ import axios from 'axios'
 import React from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
+import LoadingSpin from '../componet/LoadingSpin'
 
 const Tutors = () => {
     const navigate = useNavigate();
-  // const [selectedTuition, setselectedTuition] = useState(null)
       const { user } = useAuth()
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
   })
   const { data, isLoading, error } = useQuery({
@@ -21,6 +21,7 @@ const Tutors = () => {
   })
   const tuitor = data || []
   const approvedTuitor = tuitor.filter(t => t.status === 'Approved')
+    if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
   return (
   <div className="max-w-6xl mx-auto mt-10 px-4">
             <h1 className="text-3xl font-bold text-center mb-8 text-indigo-600">Our Tutors</h1>

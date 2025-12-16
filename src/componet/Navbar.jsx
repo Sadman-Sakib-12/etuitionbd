@@ -1,7 +1,7 @@
 import React, { use, useState } from 'react'
 import { useContext } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 import { AuthContext } from '../context/AuthContext'
 import useAuth from '../hooks/useAuth'
 import logo from '../assets/tuiton.jpg'
@@ -12,11 +12,11 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(true)
     const navLinks = (
         <>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/tuitions'>Tuitions</Link></li>
-            <li><Link to='/tutors'>Tutors</Link></li>
-            <li><Link to='/About'>About</Link></li>
-            <li><Link to='/Contact'>Contact</Link></li>
+            <li ><NavLink className={({ isActive }) => isActive ? "bg-green-700" : "hover:text-emerald-700"} to='/'>Home</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? "bg-green-700" : "hover:text-emerald-700"} to='/tuitions'>Tuitions</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? "bg-green-700" : "hover:text-emerald-700"} to='/tutors'>Tutors</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? "bg-green-700" : "hover:text-emerald-700"} to='/About'>About</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? "bg-green-700" : "hover:text-emerald-700"} to='/Contact'>Contact</NavLink></li>
         </>
     )
     return (
@@ -53,7 +53,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className='navbar-center hidden lg:flex'>
-                    <ul className='menu menu-horizontal px-1 flex items-center '>{navLinks}</ul>
+                    <ul  className='menu menu-horizontal px-1 flex items-center '>{navLinks}</ul>
                 </div>
                 {/* Right */}
                 <div className='navbar-end flex items-center gap-2'>
@@ -77,6 +77,7 @@ const Navbar = () => {
                             <ul tabIndex={0} className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-48'>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
                                 <li><button onClick={logout}>Logout</button></li>
+                                
                             </ul>
                         </div>
                     )}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 const TutorMenu = () => {
     return (
         <div className='flex min-h-screen bg-gray-100'>
@@ -9,16 +9,16 @@ const TutorMenu = () => {
                         <Link to='/'>Tutor Dashboard</Link></div>
                     <nav className='mt-6'>
                         <ul>
-                            <li>
-                                <Link to='myapplications' className='block px-6 py-3 hover:bg-indigo-100 rounded'>My Applications</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink  className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"}to='myapplications'>My Applications</NavLink>
                             </li>
 
-                            <li>
-                                <Link to='ongoingtuition' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tutor Ongoing</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='ongoingtuition'>Tutor Ongoing</NavLink>
                             </li>
 
-                            <li>
-                                <Link to='revenuehistory' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Revenue History</Link>
+                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-13 rounded-lg" : "hover:text-emerald-700"} to='revenuehistory' >Revenue History</NavLink>
                             </li>
 
                          

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const MyApplicationModal = ({ editingTuition, setEditingTuition, handleUpdate }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -11,8 +9,10 @@ const MyApplicationModal = ({ editingTuition, setEditingTuition, handleUpdate })
           <input
             type="text"
             value={editingTuition.qualifications}
-            onChange={e => setEditingTuition({ ...editingTuition, qualifications: e.target.value })}
-            className="w-full border px-2 py-1 rounded mt-1"
+            onChange={e =>
+              setEditingTuition({ ...editingTuition, qualifications: e.target.value })
+            }
+            className="w-full border px-2 py-1 rounded"
           />
         </label>
 
@@ -21,34 +21,41 @@ const MyApplicationModal = ({ editingTuition, setEditingTuition, handleUpdate })
           <input
             type="text"
             value={editingTuition.experience}
-            onChange={e => setEditingTuition({ ...editingTuition, experience: e.target.value })}
-            className="w-full border px-2 py-1 rounded mt-1"
+            onChange={e =>
+              setEditingTuition({ ...editingTuition, experience: e.target.value })
+            }
+            className="w-full border px-2 py-1 rounded"
           />
         </label>
 
-        <label className="block mb-2">
+        <label className="block mb-4">
           Expected Salary:
           <input
             type="text"
-            value={editingTuition.expectedsalary}
-            onChange={e => setEditingTuition({ ...editingTuition, expectedsalary: e.target.value })}
-            className="w-full border px-2 py-1 rounded mt-1"
+            value={editingTuition.expectedSalary}
+            onChange={e =>
+              setEditingTuition({ ...editingTuition, expectedSalary: e.target.value })
+            }
+            className="w-full border px-2 py-1 rounded"
           />
         </label>
 
         <div className="flex justify-end gap-2">
           <button
             onClick={() => setEditingTuition(null)}
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+            className="px-4 py-2 bg-gray-300 rounded"
           >
             Cancel
           </button>
+
           <button
+            disabled={!editingTuition}
             onClick={handleUpdate}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="px-4 py-2 bg-green-500 text-white rounded disabled:opacity-50"
           >
-            Submit 
+            Submit
           </button>
+
         </div>
       </div>
     </div>

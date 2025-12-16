@@ -2,7 +2,9 @@ import React from 'react'
 import { motion } from "framer-motion";
 import LatestTutors from '../componet/LatestTutors';
 import LatestTutionPost from '../componet/LatestTutionPost';
-const Home = () => {
+import LoadingSpin from '../componet/LoadingSpin';
+const Home = ({isLoading}) => {
+    if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
   return (
     <div>
       <section className=''
@@ -34,8 +36,8 @@ const Home = () => {
           </motion.button>
         </motion.div>
       </section>
-        <LatestTutionPost/>
-      <LatestTutors/>
+     <LatestTutionPost/>
+     <LatestTutors/>
     
 
       <section className='p-10'>

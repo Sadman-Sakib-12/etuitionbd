@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 const AdminMenu = () => {
     return (
         <div className='flex min-h-screen bg-gray-100'>
@@ -9,14 +9,14 @@ const AdminMenu = () => {
                         <Link to='/'>Admin Dashboard</Link></div>
                     <nav className='mt-6'>
                         <ul>
-                            <li>
-                                <Link to='usermangement' className='block px-6 py-3 hover:bg-indigo-100 rounded'>User Management</Link>
-                            </li>
-                            <li>
-                                <Link to='tuitionmanagement' className='block px-6 py-3 hover:bg-indigo-100 rounded'>Tuition Management</Link>
-                            </li>
-                            <li>
-                                <Link to='reportsanalytics' className='block px-6 py-3 hover:bg-indigo-100 rounded'> Reports & Analytics</Link>
+                            <li className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-8 rounded-lg" : "hover:text-emerald-700"} to='usermangement' >User Management</NavLink>
+                            </li >
+                            <li className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-5 rounded-lg" : "hover:text-emerald-700"} to='tuitionmanagement' >Tuition Management</NavLink>
+                            </li >
+                            <li className='block px-6 py-3 hover:bg-indigo-100 rounded'>
+                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-8 rounded-lg" : "hover:text-emerald-700"} to='reportsanalytics' > Reports & Analytics</NavLink>
                             </li>
                         </ul>
                     </nav>

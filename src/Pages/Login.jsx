@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import useAuth from '../hooks/useAuth'
 import { saveOrUpdateUser } from '../utils'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const { user,
@@ -10,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
-    if (user) return <Navigate to={from} replace={true} />
+  if (user) return <Navigate to={from} replace={true} />
 
   const hanldesubmit = async event => {
     event.preventDefault()
@@ -25,8 +26,10 @@ const Login = () => {
         image: user?.photoURL
       })
       navigate(from, { replace: true })
+       toast.success('Login Successful')
     } catch (err) {
       console.log(err)
+      toast.error(err?.message)
     }
   }
   const handleGoogleSignIn = async () => {
@@ -39,8 +42,10 @@ const Login = () => {
         image: user?.photoURL,
       })
       navigate(from, { replace: true })
+       toast.success('Login Successful')
     } catch (err) {
       console.log(err)
+      toast.error(err?.message)
     }
   }
   return (
@@ -55,7 +60,7 @@ const Login = () => {
                 <input type="email" name="email" className="input" placeholder="Email" required />
                 <div className='relative'>
                   <label className="label">Password</label>
-                  <input name="password" className="input" placeholder="Password"  required/>
+                  <input name="password" className="input" placeholder="Password" required />
                   {/* type={show?'text':'password'} */}
                   <span className='absolute right-[20px] top-[34px] cursor-pointer z-10'>
                     {/* {

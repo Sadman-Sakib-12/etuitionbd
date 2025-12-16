@@ -12,7 +12,7 @@ const UserManagement = () => {
     const queryClient = useQueryClient();
     const [editingUser, setEditingUser] = useState(null);
 
-    // Fetch users
+
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

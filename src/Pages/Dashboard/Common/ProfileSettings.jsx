@@ -64,9 +64,6 @@ const ProfileSettings = () => {
               >
                 Update
               </button>
-              <button className='bg-lime-500 px-6 py-1 rounded-lg text-white hover:bg-lime-700 transition'>
-                Change Password
-              </button>
             </div>
           </div>
         </div>

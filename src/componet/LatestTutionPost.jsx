@@ -8,7 +8,7 @@ const LatestTutionPost = () => {
   useEffect(() => {
     const fetchTutors = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/tuition");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/tuition`);
         const approvedTutors = res.data.filter(t => t.status === "Approved");
         const sorted = approvedTutors.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -58,11 +58,7 @@ const LatestTutionPost = () => {
                   <p className="text-gray-600 mb-1 font-medium">Location: {tuitor.location}</p>
                   <p className="text-green-600 font-bold mt-2 text-lg">Budget: ${tuitor.budget}</p>
                 </div>
-
-                {/* Apply Button */}
-                <button className="mt-4 bg-green-600 text-white px-5 py-2 rounded-xl hover:bg-green-700 transition shadow-lg font-semibold">
-                  Apply Now
-                </button>
+                
               </div>
             </motion.div>
           ))}

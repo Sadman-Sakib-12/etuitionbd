@@ -8,7 +8,7 @@ const LatestTutors = () => {
   const {user}=useAuth()
   useEffect(() => {
     const fetchTutors = async () => {
-      const res = await axios.get("http://localhost:3000/tutor");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/tutor`);
       const approvedTutors = res.data.filter(t => t.status === "Approved");
       const sorted = approvedTutors.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -17,7 +17,7 @@ const LatestTutors = () => {
     };
 
     fetchTutors();
-  }, []); // [] মানে একবার fetch, interval দরকার নেই
+  }, []);
 
   return (
     <section className="p-6">

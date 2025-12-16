@@ -4,12 +4,13 @@ import axios from 'axios'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import EditModal from '../../../componet/Modal/EditModal'
+import LoadingSpin from '../../../componet/LoadingSpin'
 
 const MyTuitions = () => {
   const [editingTuition, setEditingTuition] = useState(null)
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
   })
 
@@ -52,6 +53,7 @@ const MyTuitions = () => {
     Swal.fire('Updated!', 'Sent for re-approval.', 'success')
     setEditingTuition(null)
   }
+      if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
 
   return (
     <div className="p-6 min-h-screen">

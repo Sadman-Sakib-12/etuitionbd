@@ -3,11 +3,12 @@ import axios from 'axios'
 import React from 'react'
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
 import useAuth from '../../../hooks/useAuth'
+import LoadingSpin from '../../../componet/LoadingSpin'
 
 const AppliedTutors = () => {
     const { user } = useAuth()
     const axiosSecure = axios.create({
-        baseURL: 'http://localhost:3000',
+        baseURL: import.meta.env.VITE_API_URL,
         withCredentials: true
     })
     const { data, refetch, isLoading } = useQuery({
@@ -29,7 +30,9 @@ const AppliedTutors = () => {
                     name: user?.displayName,
                     email: user?.email, 
                 }
+
             });
+              console.log(res.data)
             window.location.href = res.data.url;
        
     };
@@ -47,7 +50,7 @@ const AppliedTutors = () => {
         }
     }
 
-    if (isLoading) return <p className="p-6 text-center">Loading Applications...</p>
+    if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
 
     return (
         <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">

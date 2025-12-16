@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Applymodal from '../componet/Modal/Applymodal';
+import LoadingSpin from '../componet/LoadingSpin';
 
 const Tuitions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,7 @@ const Tuitions = () => {
   const itemsPerPage = 4;
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
   });
 
@@ -55,7 +56,7 @@ const Tuitions = () => {
     currentPage * itemsPerPage
   );
 
-  if (isLoading) return <p>Loading tuitions...</p>;
+  if (isLoading) return <p><LoadingSpin/></p>;
   if (error) return <p>Error loading tuitions</p>;
 
   return (

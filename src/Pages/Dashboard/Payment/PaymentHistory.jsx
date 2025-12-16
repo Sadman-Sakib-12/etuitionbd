@@ -7,14 +7,14 @@ const PaymentHistory = () => {
   const { user } = useAuth();
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL:import.meta.env.VITE_API_URL,
     withCredentials: true
   });
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['payments', user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get('/payment'); // backend এ GET /payment route থাকতে হবে
+      const res = await axiosSecure.get('/payment'); 
       return res.data;
     },
     enabled: !!user?.email

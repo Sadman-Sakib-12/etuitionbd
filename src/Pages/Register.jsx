@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { saveOrUpdateUser } from '../utils';
+import toast from 'react-hot-toast';
 
 const Register = () => {
-    const {  creatUserWithEamil, signInWithGoogle,  updateUsserProfile } = useAuth();
+    const { creatUserWithEamil, signInWithGoogle, updateUsserProfile } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || '/';
@@ -17,8 +18,8 @@ const Register = () => {
     const onSubmit = async (data) => {
         const { name, email, password, phone } = data;
         try {
-            const result = await  creatUserWithEamil(email, password);
-            await  updateUsserProfile(name);
+            const result = await creatUserWithEamil(email, password);
+            await updateUsserProfile(name);
 
             // Save to DB
             await saveOrUpdateUser({
@@ -29,8 +30,10 @@ const Register = () => {
             });
 
             navigate(from, { replace: true });
+            toast.success('Register Successful')
         } catch (err) {
             console.log(err);
+            toast.error(err?.message)
         }
     };
 
@@ -46,8 +49,10 @@ const Register = () => {
             });
 
             navigate(from, { replace: true });
+            toast.success('Register Successful')
         } catch (err) {
             console.log(err);
+            toast.error(err?.message)
         }
     };
 
