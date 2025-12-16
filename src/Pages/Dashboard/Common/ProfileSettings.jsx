@@ -25,12 +25,11 @@ const ProfileSettings = () => {
             />
           </div>
 
-          {/* Role */}
+
           <p className='p-2 px-4 text-xs text-white bg-lime-500 rounded-full mt-2'>
             {role}
           </p>
 
-          {/* User ID */}
           <p className='mt-2 text-sm font-medium text-gray-800'>
             User ID: {user?.uid}
           </p>
@@ -56,15 +55,7 @@ const ProfileSettings = () => {
                   className='border border-gray-300 rounded px-3 py-1 bg-gray-100 cursor-not-allowed'
                 />
               </div>
-            </div>
-
-            <div className='flex gap-4 mt-4 justify-center md:justify-end'>
-              <button
-                className='bg-lime-500 px-6 py-1 rounded-lg text-white hover:bg-lime-700 transition'
-              >
-                Update
-              </button>
-            </div>
+            </div>         
           </div>
         </div>
       </div>

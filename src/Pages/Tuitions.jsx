@@ -8,7 +8,7 @@ const Tuitions = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTuition, setSelectedTuition] = useState(null);
   const [search, setSearch] = useState('');
-  const [sort, setSort] = useState(''); 
+  const [sort, setSort] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
@@ -56,7 +56,7 @@ const Tuitions = () => {
     currentPage * itemsPerPage
   );
 
-  if (isLoading) return <p><LoadingSpin/></p>;
+  if (isLoading) return <p><LoadingSpin /></p>;
   if (error) return <p>Error loading tuitions</p>;
 
   return (
@@ -85,27 +85,32 @@ const Tuitions = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedTuitions.map((tuition) => (
-          <div key={tuition._id} className="bg-white p-4 rounded shadow flex flex-col justify-between">
+          <div
+            key={tuition._id}
+            className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition flex flex-col justify-between"
+          >
             <div>
               <h3 className="font-bold text-lg mb-2">{tuition.subject}</h3>
               <p>Class: {tuition.class}</p>
               <p>Location: {tuition.location}</p>
               <p>Budget: ${tuition.budget}</p>
             </div>
+
             <button
               onClick={() => {
                 setSelectedTuition(tuition);
                 setIsOpen(true);
               }}
-              className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
+              className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
             >
               Apply
             </button>
           </div>
         ))}
       </div>
+
 
 
       {isOpen && selectedTuition && (

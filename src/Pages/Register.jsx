@@ -21,7 +21,6 @@ const Register = () => {
             const result = await creatUserWithEamil(email, password);
             await updateUsserProfile(name);
 
-            // Save to DB
             await saveOrUpdateUser({
                 name,
                 email,
@@ -107,11 +106,11 @@ const Register = () => {
                         />
                         {errors.phone && <p className="text-red-500 text-xs">{errors.phone.message}</p>}
 
-                        <button type="submit" className="btn btn-neutral mt-4">Register</button>
+                        <button type="submit" className="btn btn-neutral px-20 md:px-32 mt-4">Register</button>
                         <button
                             type="button"
                             onClick={handleGoogleSignIn}
-                            className="btn flex items-center justify-center gap-2 mt-2"
+                            className="btn  flex items-center justify-center md:px-18 py-1 gap-2 mt-2"
                         >
                             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google" className="w-5 h-5" />
                             Continue with Google

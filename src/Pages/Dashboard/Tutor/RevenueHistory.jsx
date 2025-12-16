@@ -44,8 +44,7 @@ const RevenueHistory = () => {
                             {transactions.map((t) => (
                                 <tr key={t._id} className="border-b hover:bg-gray-50">
                                     <td className="py-2 px-4">{new Date(t.date).toLocaleString()}</td>
-                                    <td className="py-2 px-4">{t.tuitionTitle || 'N/A'}</td>
-                                    <td className="py-2 px-4">{t.studentName || t.studentEmail}</td>
+                                    <td className="py-2 px-4">{t.studentName}</td>
                                     <td className="py-2 px-4">${t.amount.toFixed(2)}</td>
                                     <td className="py-2 px-4 text-green-600 font-semibold">{t.status}</td>
                                 </tr>

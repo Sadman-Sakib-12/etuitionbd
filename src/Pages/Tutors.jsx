@@ -40,7 +40,7 @@ const Tutors = () => {
                         <p className='text-gray-600 mb-3'><strong>Expected Salary:</strong> ${tutor.expectedSalary}</p>
                         <button 
                             onClick={() => navigate(`/tutor/${tutor._id}`)} 
-                            className='bg-indigo-600 text-white px-5 py-2 rounded hover:bg-indigo-700 transition'
+                            className=' text-white px-5 py-2 rounded  bg-green-600 hover:bg-green-700 transition'
                         >
                             View Profile
                         </button>
