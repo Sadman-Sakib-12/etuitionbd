@@ -4,9 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { saveOrUpdateUser } from '../utils';
 import toast from 'react-hot-toast';
+import { FaEye } from 'react-icons/fa6';
+import { IoEyeOff } from 'react-icons/io5';
 
 const Register = () => {
     const { creatUserWithEamil, signInWithGoogle, updateUsserProfile } = useAuth();
+    const [show, setShow] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || '/';
@@ -82,10 +85,15 @@ const Register = () => {
 
                         <label>Password</label>
                         <input
-                            type="password"
+                            type={show ? 'text' : 'password'}
                             className="input"
                             {...register('password', { required: 'Password required', minLength: 6 })}
                         />
+                        <span onClick={() => setShow(!show)} className='absolute right-[70px] top-[220px] cursor-pointer z-10'>
+                            {
+                                show ? <FaEye /> : <IoEyeOff />
+                            }
+                        </span>
                         {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
 
                         <label>Role</label>

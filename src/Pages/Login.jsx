@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import useAuth from '../hooks/useAuth'
 import { saveOrUpdateUser } from '../utils'
 import toast from 'react-hot-toast'
+import { FaEye } from 'react-icons/fa6'
+import { IoEyeOff } from 'react-icons/io5'
 
 const Login = () => {
   const { user,
     signInWithGoogle,
     signIn, } = useAuth()
+    const[show,setShow]=useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
   if (user) return <Navigate to={from} replace={true} />
+  
 
   const hanldesubmit = async event => {
     event.preventDefault()
@@ -60,12 +64,12 @@ const Login = () => {
                 <input type="email" name="email" className="input" placeholder="Email" required />
                 <div className='relative'>
                   <label className="label">Password</label>
-                  <input name="password" className="input" placeholder="Password" required />
-                  {/* type={show?'text':'password'} */}
-                  <span className='absolute right-[20px] top-[34px] cursor-pointer z-10'>
-                    {/* {
+                  <input type={show?'text':'password'} name="password" className="input" placeholder="Password" required />
+                  
+                  <span onClick={()=>setShow(!show)} className='absolute right-[20px] top-[34px] cursor-pointer z-10'>
+                    {
                       show ?<FaEye />:<IoEyeOff />
-                    } */}
+                    }
                   </span>
                 </div>
                 <div>
