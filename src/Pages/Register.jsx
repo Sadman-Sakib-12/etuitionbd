@@ -89,7 +89,7 @@ const Register = () => {
                             className="input"
                             {...register('password', { required: 'Password required', minLength: 6 })}
                         />
-                        <span onClick={() => setShow(!show)} className='absolute right-[70px] top-[220px] cursor-pointer z-10'>
+                        <span onClick={() => setShow(!show)} className='absolute right-10 md:right-[70px] top-[220px] cursor-pointer z-10'>
                             {
                                 show ? <FaEye /> : <IoEyeOff />
                             }
@@ -114,11 +114,11 @@ const Register = () => {
                         />
                         {errors.phone && <p className="text-red-500 text-xs">{errors.phone.message}</p>}
 
-                        <button type="submit" className="btn btn-neutral px-20 md:px-32 mt-4">Register</button>
+                        <button type="submit" className="btn btn-neutral px-25 md:px-32 mt-4">Register</button>
                         <button
                             type="button"
                             onClick={handleGoogleSignIn}
-                            className="btn  flex items-center justify-center md:px-18 py-1 gap-2 mt-2"
+                            className="btn  flex items-center justify-center md:px-18 px-10 py-1 gap-2 mt-2"
                         >
                             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google" className="w-5 h-5" />
                             Continue with Google
