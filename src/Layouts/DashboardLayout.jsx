@@ -12,7 +12,7 @@ const DashboardLayout = () => {
         </main>
 
       </div>
-      {/* <Footer/> */}
+      
     </div>
   )
 }

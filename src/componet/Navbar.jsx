@@ -22,7 +22,7 @@ const Navbar = () => {
     return (
         <div className='sticky top-0 z-50 bg-green-200 shadow '>
             <div className='navbar max-w-7xl mx-auto flex items-center justify-between'>
-                {/* Left section */}
+              
                 <div className='navbar-start'>
                     <div className='dropdown'>
                         <button tabIndex={0} onClick={() => setIsOpen(!isOpen)} className='btn btn-ghost lg:hidden'>
@@ -47,7 +47,7 @@ const Navbar = () => {
                         <img className='w-12 h-12 rounded-full' src={logo} alt="" />
 
                     </div>
-                    {/* Logo name */}
+                   
                     <Link to='/' className='font-bold text-2xl'>
                         <span className='text-primary '>Tuition</span>
                     </Link>

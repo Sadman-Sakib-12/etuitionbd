@@ -42,7 +42,7 @@ const Tutordetailspage = () => {
         return (
             <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center bg-gray-50 rounded-xl p-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg space-y-6">
-                    {/* Subject */}
+                
                     <div className="space-y-1">
                         <label htmlFor="subject" className="block text-gray-600">Subject</label>
                         <input
@@ -55,7 +55,7 @@ const Tutordetailspage = () => {
                         {errors.subject && <p className="text-xs text-red-500">{errors.subject.message}</p>}
                     </div>
 
-                    {/* Class */}
+                  
                     <div className="space-y-1">
                         <label htmlFor="class" className="block text-gray-600">Class</label>
                         <input
@@ -68,7 +68,7 @@ const Tutordetailspage = () => {
                         {errors.class && <p className="text-xs text-red-500">{errors.class.message}</p>}
                     </div>
 
-                    {/* Location */}
+                
                     <div className="space-y-1">
                         <label htmlFor="location" className="block text-gray-600">Location</label>
                         <input
@@ -81,7 +81,7 @@ const Tutordetailspage = () => {
                         {errors.location && <p className="text-xs text-red-500">{errors.location.message}</p>}
                     </div>
 
-                    {/* Budget */}
+                
                     <div className="space-y-1">
                         <label htmlFor="budget" className="block text-gray-600">Budget ($)</label>
                         <input
@@ -94,7 +94,7 @@ const Tutordetailspage = () => {
                         {errors.budget && <p className="text-xs text-red-500">{errors.budget.message}</p>}
                     </div>
 
-                    {/* Submit */}
+                   
                     <button
                         type="submit"
                         className="w-full p-3 text-white bg-lime-500 rounded-md font-medium flex justify-center items-center"

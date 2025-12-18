@@ -10,7 +10,7 @@ const ProfileSettings = () => {
       <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
 
         <div className='flex flex-col items-center p-4 -mt-16'>
-          {/* Profile Image */}
+        
           <div className='relative'>
             <img
               alt='profile'

@@ -113,7 +113,7 @@ const MyApplications = () => {
         </table>
       </div>
 
-      {/* ✅ MODAL MUST BE OUTSIDE TABLE */}
+    
       {editingTuition && (
         <MyApplicationModal
           editingTuition={editingTuition}

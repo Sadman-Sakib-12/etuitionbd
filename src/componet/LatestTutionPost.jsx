@@ -37,7 +37,7 @@ const LatestTutionPost = () => {
               whileHover={{ scale: 1.05, boxShadow: "0px 20px 40px rgba(0,0,0,0.2)" }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
             >
-              {/* Image Header */}
+              
               <div className=" to-green-600 p-5 flex justify-center items-center relative">
                 <motion.img
                   src={tuitor.profileImage || "/default-avatar.png"} 
@@ -50,7 +50,7 @@ const LatestTutionPost = () => {
                 
               </div>
 
-              {/* Card Content */}
+            
               <div className="p-6 text-center flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">{tuitor.subject}</h3>

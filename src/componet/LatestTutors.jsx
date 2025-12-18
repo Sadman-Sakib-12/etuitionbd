@@ -42,10 +42,10 @@ const LatestTutors = () => {
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}
               />
-              <h3 className="text-xl font-semibold">{tutor.name}</h3>
-              <p className="text-gray-500 font">Qualifications:{tutor.qualifications}</p>
-              <p className="text-gray-500">Experience:{tutor.experience}</p>
-              <p className="text-gray-500">Salary:{tutor.expectedSalary}</p>
+              <h3 className="text-xl font-semibold">Name: {tutor.name}</h3>
+              <p className="text-gray-500 font">Qualifications: {tutor.qualifications}</p>
+              <p className="text-gray-500">Experience: {tutor.experience}year</p>
+              <p className="text-gray-500">Salary: {tutor.expectedSalary}</p>
             </motion.div>
           ))}
         </AnimatePresence>

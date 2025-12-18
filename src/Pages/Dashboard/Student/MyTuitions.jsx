@@ -47,7 +47,7 @@ const MyTuitions = () => {
       class: editingTuition.class,
       location: editingTuition.location,
       budget: editingTuition.budget,
-      status: 'Pending' // optional, backend will also force it
+      status: 'Pending' 
     })
 
     refetch()
@@ -60,7 +60,7 @@ const MyTuitions = () => {
     <div className="p-6 min-h-screen">
       <h2 className="text-2xl font-semibold mb-6">My Tuitions</h2>
 
-      {/* Table */}
+      
       <div className="overflow-x- shadow rounded-lg">
         <table className="min-w-full text-sm">
           <thead className="">

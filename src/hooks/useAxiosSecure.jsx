@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
 
     useEffect(() => {
         if (!loading && user) {
-            // Request interceptor
+            
             const requestInterceptor = axiosInstance.interceptors.request.use(
                 async (config) => {
                     if (auth.currentUser) {
@@ -27,7 +27,6 @@ const useAxiosSecure = () => {
                 (error) => Promise.reject(error)
             );
 
-            // Response interceptor
             const responseInterceptor = axiosInstance.interceptors.response.use(
                 (res) => res,
                 async (err) => {

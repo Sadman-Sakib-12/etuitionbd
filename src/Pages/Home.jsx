@@ -14,7 +14,7 @@ const Home = ({isLoading}) => {
           height: 400,
           backgroundPosition: 'center'
         }}>
-        {/* <div className="absolute inset-0 "></div> */}
+      
         <motion.div
           className='relative z-10 pt-30  text-white font-bold  text-2xl text-center px-10'
           initial={{ opacity: 0, y: -50 }}

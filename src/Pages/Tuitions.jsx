@@ -92,7 +92,7 @@ const Tuitions = () => {
             className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition flex flex-col justify-between"
           >
             <div>
-              <h3 className="font-bold text-lg mb-2">{tuition.subject}</h3>
+              <h3 className="font-bold text-lg mb-2">Subject: {tuition.subject}</h3>
               <p>Class: {tuition.class}</p>
               <p>Location: {tuition.location}</p>
               <p>Budget: ${tuition.budget}</p>
