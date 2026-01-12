@@ -53,8 +53,8 @@ const AppliedTutors = () => {
     if (isLoading) return <p className="p-6 text-center"><LoadingSpin/></p>
 
     return (
-        <div className="w-full min-h-[calc(100vh-40px)] p-6 bg-gray-50">
-            <h2 className="text-3xl font-bold mb-8 text-gray-800">Applied Tutors 👨‍🏫</h2>
+        <div className="w-full min-h-[calc(100vh-40px)] p-10 ">
+            <h2 className="text-3xl font-bold mb-8 ">Applied Tutors 👨‍🏫</h2>
 
             {tutor.length === 0 && (
                 <p className="text-gray-500 italic">No tutor applications received yet.</p>
@@ -64,7 +64,7 @@ const AppliedTutors = () => {
                 {tutor.map(app => (
                     <div
                         key={app._id}
-                        className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between border-t-4 border-indigo-500"
+                        className=" rounded-xl shadow-lg p-6 flex flex-col justify-between border-t-4 border-indigo-500"
                     >
                         <div className="flex items-center gap-4 mb-4">
                             <img
@@ -73,12 +73,12 @@ const AppliedTutors = () => {
                                 className="w-14 h-14 rounded-full object-cover ring-2 ring-indigo-300"
                             />
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900">{app.name}</h3>
-                                <p className="text-sm text-gray-600">{app.email}</p>
+                                <h3 className="text-xl font-bold ">{app.name}</h3>
+                                <p className="text-sm ">{app.email}</p>
                             </div>
                         </div>
 
-                        <div className="space-y-1 mb-4 text-gray-700">
+                        <div className="space-y-1 mb-4 ">
                             <p>
                                 <strong>Qualifications:</strong> {app.qualifications}
                             </p>

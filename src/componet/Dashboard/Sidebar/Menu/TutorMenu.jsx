@@ -1,34 +1,66 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router'
+import React from 'react';
+import { Link, NavLink } from 'react-router';
+import {
+  Briefcase,
+  Clock,
+  Wallet,
+  LayoutDashboard,
+  UserCircle,
+  LogOut,
+  GraduationCap
+} from 'lucide-react';
+
 const TutorMenu = () => {
-    return (
-        <div className='flex min-h-screen bg-gray-100'>
-            <aside className='w-64 bg-white shadow-md flex flex-col justify-between'>
-                <div>
-                    <div className='p-6 text-2xl font-bold text-indigo-600'>
-                        <Link to='/'>Tutor Dashboard</Link></div>
-                    <nav className='mt-6'>
-                        <ul>
-                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink  className={({ isActive }) => isActive ? "bg-green-700 py-3 px-5 rounded-lg" : "hover:text-emerald-700"}to='myapplications'>My Applications</NavLink>
-                            </li>
+  
+ const navLinkStyle = ({ isActive }) =>
+    `group flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 ${isActive
+      ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200"
+      : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-600"
+    }`;
 
-                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-5 rounded-lg" : "hover:text-emerald-700"} to='ongoingtuition'>Tutor Ongoing</NavLink>
-                            </li>
+  return (
+    <div className='flex flex-col h-screen w-72 bg-white border-r border-slate-100 p-6 overflow-hidden'>
 
-                            <li  className='block px-6 py-3 hover:bg-indigo-100 rounded'>
-                                <NavLink className={({ isActive }) => isActive ? "bg-green-700 py-3 px-8 rounded-lg" : "hover:text-emerald-700"} to='revenuehistory' >Revenue History</NavLink>
-                            </li>
-
-                         
-                        </ul>
-                    </nav>
-                </div>
-
-                
-            </aside>
+      {/* Brand Header */}
+      <NavLink to="overview" className={navLinkStyle}>
+        <li>Overview</li>
+      </NavLink>
+      <div className='flex items-center gap-3 px-2 mb-12'>
+        <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-orange-600 shadow-lg shadow-orange-100'>
+          <GraduationCap className='text-white' size={24} />
         </div>
-    )
-}
-export default TutorMenu
+        <div>
+          <h1 className='text-lg font-black text-slate-900 leading-none'>TutorHub</h1>
+          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1'>Educator Panel</p>
+        </div>
+      </div>
+
+      {/* Menu Sections */}
+      <div className='flex-1 flex flex-col gap-8 overflow-y-auto no-scrollbar'>
+
+        {/* Core Teaching Section */}
+        <div>
+          <h2 className='px-4 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4'>Teaching Space</h2>
+          <nav className='flex flex-col gap-1'>
+            <NavLink to='myapplications' className={navLinkStyle}>
+              <Briefcase size={18} className="group-hover:scale-110 transition-transform" />
+              <span>My Applications</span>
+            </NavLink>
+
+            <NavLink to='ongoingtuition' className={navLinkStyle}>
+              <Clock size={18} className="group-hover:scale-110 transition-transform" />
+              <span>Ongoing Tuitions</span>
+            </NavLink>
+
+            <NavLink to='revenuehistory' className={navLinkStyle}>
+              <Wallet size={18} className="group-hover:scale-110 transition-transform" />
+              <span>Revenue History</span>
+            </NavLink>
+          </nav>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TutorMenu;

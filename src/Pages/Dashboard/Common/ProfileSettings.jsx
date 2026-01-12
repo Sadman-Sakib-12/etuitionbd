@@ -1,66 +1,90 @@
-import React from 'react'
-import useAuth from '../../../hooks/useAuth'
-import useRole from '../../../hooks/useRole'
+import React from 'react';
+import useAuth from '../../../hooks/useAuth';
+import useRole from '../../../hooks/useRole';
+import { Camera, Mail, User, ShieldCheck, Fingerprint } from 'lucide-react';
+import LoadingSpin from '../../../componet/LoadingSpin';
+
 
 const ProfileSettings = () => {
-  const {user}=useAuth()
-  const [role,isRoleLoading]=useRole()
-  return (
-    <div className='flex justify-center items-center min-h-screen bg-gray-100'>
-      <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
+  const { user } = useAuth();
+  const [role, isRoleLoading] = useRole();
 
-        <div className='flex flex-col items-center p-4 -mt-16'>
+  if (isRoleLoading) return <div className="min-h-screen flex items-center justify-center"><LoadingSpin/></div>;
+
+  return (
+    <div className='min-h-[90vh] flex items-center justify-center p-6'>
+      <div className=' shadow-xl  rounded-[3rem] overflow-hidden w-full max-w-4xl border border-slate-100'>
         
-          <div className='relative'>
-            <img
-              alt='profile'
-              src={user?.photoURL}
-              className='mx-auto object-cover rounded-full h-24 w-24 border-2 border-white'
-            />
-            <input
-              type='file'
-              accept='image/*'
-              className='absolute bottom-0 right-0 w-8 h-8 opacity-0 cursor-pointer'
-              title='Change Profile Picture'
-            />
+    
+
+    
+        <div className='px-1 pb-10'>
+          <div className='relative flex flex-col items-center -mt-20'>
+            
+ 
+            <div className='relative group'>
+              <img
+                alt='profile'
+                src={user?.photoURL || "https://i.ibb.co/v3978yP/default-avatar.jpg"}
+                className=' object-cover rounded-full mt-20 border-8 border-white shadow-xl'
+              />
+            </div> 
+            <div className='mt-6 flex items-center gap-2  text-emerald-600 px-6 py-2 rounded-full border border-emerald-100'>
+              <ShieldCheck size={16} strokeWidth={3} />
+              <span className='text-xs font-black uppercase tracking-widest'>{role}</span>
+            </div>
+
+            <h1 className='mt-4 text-3xl font-black '>{user?.displayName || "User Name"}</h1>
           </div>
 
+          <hr className='my-10 border-slate-100' />
 
-          <p className='p-2 px-4 text-xs text-white bg-lime-500 rounded-full mt-2'>
-            {role}
-          </p>
 
-          <p className='mt-2 text-sm font-medium text-gray-800'>
-            User ID: {user?.uid}
-          </p>
-
-          <div className='w-full p-4 mt-4 rounded-lg'>
-            <div className='flex flex-col md:flex-row md:justify-between gap-4 text-gray-700'>
-              <div className='flex flex-col w-full md:w-1/2'>
-                <label className='text-sm mb-1'>Name</label>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            
+ 
+            <div className='space-y-2'>
+              <label className='flex items-center gap-2 text-xs font-black  uppercase tracking-wider ml-2'>
+                <User size={14} /> Full Name
+              </label>
+              <div className='relative'>
                 <input
-                  type='name'
+                  type='text'
                   value={user?.displayName}
                   readOnly
-                  className='border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-1 focus:ring-indigo-500'
+                  className='w-full bg-slate-50 border border-slate-100 text-slate-700 font-bold px-6 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all'
                 />
               </div>
+            </div>
 
-              <div className='flex flex-col w-full md:w-1/2'>
-                <label className='text-sm mb-1'>Email</label>
-                <input
-                  type='email'
-                  value={user?.email}
-                  readOnly
-                  className='border border-gray-300 rounded px-3 py-1 bg-gray-100 cursor-not-allowed'
-                />
+ 
+            <div className='space-y-2'>
+              <label className='flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-wider ml-2'>
+                <Mail size={14} /> Email Address
+              </label>
+              <input
+                type='email'
+                value={user?.email}
+                readOnly
+                className='w-full bg-slate-50 border border-slate-100 text-slate-500 font-bold px-6 py-4 rounded-2xl cursor-not-allowed opacity-70'
+              />
+            </div>
+
+
+            <div className='md:col-span-2 space-y-2'>
+              <label className='flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-wider ml-2'>
+                <Fingerprint size={14} /> Unique User ID
+              </label>
+              <div className='bg-slate-900 p-4 rounded-2xl flex items-center justify-between'>
+                <code className='text-indigo-300 font-mono text-sm'>{user?.uid}</code>
+                <span className='text-[10px] bg-slate-800 text-slate-400 px-3 py-1 rounded-lg font-bold'>Verified</span>
               </div>
-            </div>         
-          </div>
+            </div>
+          </div>     
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileSettings
+export default ProfileSettings;

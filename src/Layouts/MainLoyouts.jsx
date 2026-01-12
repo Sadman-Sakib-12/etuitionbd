@@ -5,13 +5,12 @@ import Footer from '../componet/Footer'
 
 const MainLoyouts = () => {
   return (
-    <div>
-      <div className='max-w-11/12 mx-auto' >
-        <Navbar />
+    <div className=''>
+      <Navbar />
+      <div className='max-w-11/12 mx-auto ' >
         <main className='min-h-[calc(100vh-178px)]'>
           <Outlet />
         </main>
-
       </div>
       <Footer />
     </div>

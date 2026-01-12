@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Contact = () => {
   return (
-    <div className="bg-gray-50 min-h-[calc(100vh-40px)] p-6">
+    <div className=" min-h-[calc(100vh-40px)] p-6">
       <h1 className="text-3xl font-bold text-center mb-8">Contact Us</h1>
 
       <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2">
@@ -26,7 +26,7 @@ const Contact = () => {
 
         {/* Contact Form */}
         <div>
-          <form className="bg-white p-6 rounded-xl shadow space-y-4">
+          <form className=" p-6 rounded-xl shadow space-y-4">
             <input
               type="text"
               name="name"

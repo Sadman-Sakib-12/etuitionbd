@@ -24,6 +24,10 @@ import ViewProfile from "../componet/ViewProfile";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import PrivateRouter from "../Providers/PrivateRouter";
 import Adminroute from "./Adminroute";
+import Overview from "../Pages/Dashboard/Common/Overview";
+import Blog from "../componet/Blog";
+import PrivacyTerms from "../componet/PrivacyTerms";
+import HelpSupport from "../componet/HelpSupport";
 
 
 const router = createBrowserRouter([
@@ -56,17 +60,29 @@ const router = createBrowserRouter([
                 path: '/tutors',
                 element: (<PrivateRouter><Tutors /></PrivateRouter>)
             },
+            {
+                path: '/blog',
+                element: <Blog />
+            },
+            {
+                path: '/privacy',
+                element: <PrivacyTerms />
+            },
+            {
+                path: '/help',
+                element: <HelpSupport />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/regiter',
+                element: <Register />
+            },
         ]
     },
 
-    {
-        path: '/login',
-        element: <Login />
-    },
-    {
-        path: '/regiter',
-        element: <Register />
-    },
 
     {
         path: '*',
@@ -80,6 +96,14 @@ const router = createBrowserRouter([
             </PrivateRouter>
         ),
         children: [
+            {
+                index: true,
+                element: <Overview />
+            },
+            {
+                path: 'overview',
+                element: <Overview />
+            },
             {
                 path: 'setting',
                 element: (<PrivateRouter><ProfileSettings /></PrivateRouter>)
