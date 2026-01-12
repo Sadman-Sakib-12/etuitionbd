@@ -116,10 +116,12 @@ if (isLoading) return (
 
                 <button
                   onClick={() => navigate(`/tutor/${tutor._id}`)}
-                  className="w-full bg-slate-900 text-white font-bold py-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 group/btn"
-                >
+                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 
+                             text-white font-semibold py-5 rounded-xl 
+                             shadow-md hover:shadow-xl transform hover:scale-[1.02] active:scale-100"
+                  >
                   View Profile
-                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+              
                 </button>
               </div>
             ))}

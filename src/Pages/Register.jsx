@@ -167,9 +167,10 @@ const Register = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-2xl font-bold transition-all shadow-lg shadow-indigo-200 dark:shadow-none mt-2 disabled:opacity-70 flex items-center justify-center gap-2 group"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 
+                              text-white py-4 rounded-2xl font-bold transition-all shadow-lg shadow-indigo-200 dark:shadow-none mt-2 disabled:opacity-70 flex items-center justify-center gap-2 group"
             >
-              {isSubmitting ? 'Creating Account...' : 'Get Started'}
+              {isSubmitting ? 'Creating Account...' : 'Regiter'}
               {!isSubmitting && <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}
             </button>
 

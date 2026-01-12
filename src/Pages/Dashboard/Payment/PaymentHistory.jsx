@@ -26,7 +26,7 @@ const PaymentHistory = () => {
 
   return (
     <div className="p-4 md:p-10 ">
-      {/* Header Section */}
+    
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
         <div>
           <h2 className="text-4xl font-black  tracking-tight">Payment History</h2>
@@ -35,7 +35,7 @@ const PaymentHistory = () => {
           </p>
         </div>
         
-        {/* Total Spent Summary Card */}
+
         <div className="bg-white border border-slate-100 p-6 rounded-[2rem] shadow-xl shadow-slate-200/50 flex items-center gap-5 min-w-[240px]">
           <div className="h-14 w-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
             <DollarSign size={28} />
@@ -49,7 +49,7 @@ const PaymentHistory = () => {
         </div>
       </div>
 
-      {/* Modern Table Container */}
+     
       <div className="rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/40 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">

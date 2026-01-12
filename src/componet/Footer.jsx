@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="bg-slate-700 text-gray-300 mt-5">
             <div className="max-w-7xl mx-auto py-10 px-5 grid md:grid-cols-4 gap-8">
 
-                {/* About */}
+        
                 <div>
                     <h2 className="font-bold text-lg mb-3 text-white">
                         About Tuition Platform
@@ -19,7 +19,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Quick Links */}
+         
                 <div>
                     <h2 className="font-bold text-lg mb-3 text-white">
                         Quick Links
@@ -28,12 +28,13 @@ const Footer = () => {
                         <li><Link className="hover:text-orange-400" to="/">Home</Link></li>
                         <li><Link className="hover:text-orange-400" to="/tuitions">Tuitions</Link></li>
                         <li><Link className="hover:text-orange-400" to="/tutors">Tutors</Link></li>
-                        <li><Link className="hover:text-orange-400" to="/about">About</Link></li>
-                        <li><Link className="hover:text-orange-400" to="/contact">Contact</Link></li>
+                        <li><Link className="hover:text-orange-400" to="/blog">Blog</Link></li>
+                        <li><Link className="hover:text-orange-400" to="/privacy">PrivacyTerms</Link></li> 
+                        <li><Link className="hover:text-orange-400" to="/help">HelpSupport</Link></li>
                     </ul>
                 </div>
 
-                {/* Contact */}
+            
                 <div>
                     <h2 className="font-bold text-lg mb-3 text-white">
                         Contact Us
@@ -44,7 +45,7 @@ const Footer = () => {
                     <p>Phone: +880 1234-567890</p>
                 </div>
 
-                {/* Social */}
+              
                 <div>
                     <h2 className="font-bold text-lg mb-3 text-white">
                         Follow Us
@@ -70,7 +71,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Bottom Bar */}
+         
             <div className="bg-slate-800 text-center py-4 text-sm text-gray-400">
                 &copy; {new Date().getFullYear()} Tuition Platform. All rights reserved.
             </div>

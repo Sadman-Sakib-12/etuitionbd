@@ -11,7 +11,7 @@ const images = [
 const Hero= () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-play logic
+  
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));

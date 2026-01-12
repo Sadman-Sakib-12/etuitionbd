@@ -24,13 +24,12 @@ const StudentMenu = () => {
           <BookMarked className='text-white' size={22} />
         </div>
         <div>
-          <h1 className='text-lg font-black text-slate-900 leading-none'>StudentHub</h1>
+          <h1 className='text-lg font-black text-slate-900 leading-none'>Studentbd</h1>
           <p className='text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1'>Learning Dashboard</p>
         </div>
       </div>
       <div className='flex-1 flex flex-col gap-8 overflow-y-auto no-scrollbar'>
 
-        {/* Learning Management */}
         <div>
           <NavLink to="overview" className={navLinkStyle}>
             <li>Overview</li>
@@ -54,7 +53,7 @@ const StudentMenu = () => {
           </nav>
         </div>
 
-        {/* Finance Section */}
+      
         <div>
           <h2 className='px-4 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4'>Billing</h2>
           <nav className='flex flex-col gap-1.5'>

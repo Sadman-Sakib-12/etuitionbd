@@ -27,7 +27,7 @@ const HelpSupport = () => {
           ))}
         </div>
 
-        {/* Popular FAQ Mockup */}
+       
         <div className="bg-white p-10 rounded-[3rem] border border-slate-100 max-w-3xl mx-auto shadow-sm">
           <h2 className="text-2xl font-black text-slate-800 mb-8 text-center">Popular Questions</h2>
           <div className="space-y-4">

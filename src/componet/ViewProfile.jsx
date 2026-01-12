@@ -35,7 +35,7 @@ const ViewProfile = () => {
     <div className="min-h-screen  py-10 px-6">
       <div className="max-w-4xl mx-auto">
         
-        {/* Back Button */}
+    
         <Link to="/tutors" className="inline-flex items-center gap-2 text-slate-500 hover:text-orange-500 font-bold mb-8 transition-colors group">
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to All Tutors
         </Link>
@@ -74,7 +74,7 @@ const ViewProfile = () => {
             <hr className="border-slate-100 mb-10" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* Left Column: Details */}
+          
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Professional Overview</h3>
@@ -98,7 +98,7 @@ const ViewProfile = () => {
                 </div>
               </div>
 
-              {/* Right Column: Other Info */}
+          
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Quick Contact</h3>
@@ -123,7 +123,7 @@ const ViewProfile = () => {
               </div>
             </div>
 
-            {/* Bottom Note */}
+    
             <div className="mt-12 bg-indigo-50 p-6 rounded-[2rem] border border-indigo-100 flex gap-4 items-start">
                <div className="text-indigo-600 mt-1"><UserCheck size={20}/></div>
                <p className="text-indigo-800 text-sm font-medium leading-relaxed">

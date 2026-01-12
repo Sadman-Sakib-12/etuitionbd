@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Briefcase, DollarSign, Calendar } from "lucide-react"; // আইকন ব্যবহার করলে ডিজাইন সুন্দর হয়
+import { GraduationCap, Briefcase, DollarSign, Calendar } from "lucide-react"; 
 
 const LatestTutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -12,11 +12,11 @@ const LatestTutors = () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/tutor`);
         const approvedTutors = res.data.filter((t) => t.status === "Approved");
-        // লেটেস্ট টিউটর আগে দেখানোর জন্য সর্টিং
+        
         const sorted = approvedTutors.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        setTutors(sorted.slice(0, 6)); // টপ ৬ জন দেখাবো
+        setTutors(sorted.slice(0, 6)); 
       } catch (error) {
         console.error("Error fetching tutors:", error);
       } finally {
@@ -53,7 +53,7 @@ const LatestTutors = () => {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className="group  rounded-[2rem] p-6 shadow-sm hover:shadow-2xl border border-slate-100 transition-all duration-300 relative overflow-hidden"
                 >
-                  {/* Background Decoration */}
+                 
                   <div className="absolute top-0 right-0 w-24 h-24  rounded-bl-[4rem] -z-0 transition-transform group-hover:scale-110" />
 
                   <div className="relative z-10 flex flex-col items-center">

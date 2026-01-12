@@ -6,7 +6,7 @@ const Contact = () => {
       <h1 className="text-3xl font-bold text-center mb-8">Contact Us</h1>
 
       <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2">
-        {/* Contact Info */}
+       
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Get in Touch</h2>
           <p className="text-gray-700">
@@ -24,7 +24,7 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Form */}
+     
         <div>
           <form className=" p-6 rounded-xl shadow space-y-4">
             <input
