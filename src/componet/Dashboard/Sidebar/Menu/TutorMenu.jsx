@@ -1,63 +1,84 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 import {
   Briefcase,
   Clock,
   Wallet,
   LayoutDashboard,
-  UserCircle,
-  LogOut,
-  GraduationCap
+  ChevronRight
 } from 'lucide-react';
 
 const TutorMenu = () => {
-  
- const navLinkStyle = ({ isActive }) =>
-    `group flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 ${isActive
-      ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200"
-      : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-600"
+  // প্রফেশনাল এবং প্রিমিয়াম স্টাইল (SaaS Standard)
+  const navLinkStyle = ({ isActive }) =>
+    `group flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
+      isActive
+        ? "bg-emerald-50 text-emerald-700 shadow-sm"
+        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
     }`;
 
+  const iconStyle = "w-[18px] h-[18px] transition-transform duration-200 group-hover:scale-110";
+
   return (
-    <div className='flex flex-col h-screen w-72  border-r border-slate-100 p-6 overflow-hidden'>
-
-    
-      <NavLink to="overview" className={navLinkStyle}>
-        <li>Overview</li>
-      </NavLink>
-      <div className='flex items-center gap-3 px-2 mb-12'>
-        <div className='flex h-10 w-10 items-center justify-center rounded-xl '>
-          <GraduationCap className='text-white' size={24} />
-        </div>
+    <div className='px-4'>
+      <div className='space-y-6'>
+        
+        {/* Dashboard Section */}
         <div>
-          <h1 className='text-lg font-black text-slate-900 leading-none'>Tutorbd</h1>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1'>Educator Panel</p>
-        </div>
-      </div>
-
- 
-      <div className='flex-1 flex flex-col gap-8 overflow-y-auto no-scrollbar'>
-
-    
-        <div>
-          <h2 className='px-4 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4'>Teaching Space</h2>
+          <h2 className='px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3 opacity-80'>
+            Dashboard
+          </h2>
           <nav className='flex flex-col gap-1'>
-            <NavLink to='myapplications' className={navLinkStyle}>
-              <Briefcase size={18} className="group-hover:scale-110 transition-transform" />
-              <span>My Applications</span>
-            </NavLink>
-
-            <NavLink to='ongoingtuition' className={navLinkStyle}>
-              <Clock size={18} className="group-hover:scale-110 transition-transform" />
-              <span>Ongoing Tuitions</span>
-            </NavLink>
-
-            <NavLink to='revenuehistory' className={navLinkStyle}>
-              <Wallet size={18} className="group-hover:scale-110 transition-transform" />
-              <span>Revenue History</span>
+            <NavLink to="overview" className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <LayoutDashboard className={iconStyle} />
+                <span>Overview</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 group-hover:opacity-50 transition-all" />
             </NavLink>
           </nav>
         </div>
+
+        {/* Teaching Space Section */}
+        <div>
+          <h2 className='px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3 opacity-80'>
+            Teaching Space
+          </h2>
+          <nav className='flex flex-col gap-1'>
+            <NavLink to='myapplications' className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <Briefcase className={iconStyle} />
+                <span>My Applications</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 group-hover:opacity-50 transition-all" />
+            </NavLink>
+
+            <NavLink to='ongoingtuition' className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <Clock className={iconStyle} />
+                <span>Ongoing Tuitions</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 group-hover:opacity-50 transition-all" />
+            </NavLink>
+          </nav>
+        </div>
+
+        {/* Finance Section */}
+        <div>
+          <h2 className='px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3 opacity-80'>
+            Earnings
+          </h2>
+          <nav className='flex flex-col gap-1'>
+            <NavLink to='revenuehistory' className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <Wallet className={iconStyle} />
+                <span>Revenue History</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 group-hover:opacity-50 transition-all" />
+            </NavLink>
+          </nav>
+        </div>
+
       </div>
     </div>
   );

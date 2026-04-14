@@ -1,148 +1,158 @@
-import React from 'react';
-import useAuth from '../../../hooks/useAuth';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useMutation } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
-import { BookOpen, MapPin, GraduationCap, DollarSign, Send, Layout } from 'lucide-react';
-import LoadingSpin from '../../../componet/LoadingSpin';
-import Swal from 'sweetalert2';
+import React from "react";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { BookOpen, MapPin, GraduationCap, DollarSign, Send } from "lucide-react";
 
 const PostNewTuition = () => {
-    const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
-    const { isPending, mutateAsync } = useMutation({
-        mutationFn: async (payload) => await axiosSecure.post('/tuition', payload),
-        onSuccess: () => {
-            Swal.fire({
-                title: 'Success!',
-                text: 'Your tuition request has been posted.',
-                icon: 'success',
-                confirmButtonColor: '#10b981',
-                customClass: { popup: 'rounded-[2rem]' }
-            });
-        },
-        onError: (error) => {
-            Swal.fire('Error!', error.message, 'error');
-        }
-    });
+  const { register, handleSubmit, reset } = useForm();
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (data) => {
+      const res = await axiosSecure.post("/tuition", data);
+      return res.data;
+    },
+    onSuccess: () => {
+      Swal.fire({
+        icon: "success",
+        title: "Tuition Posted Successfully",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    },
+  });
 
-    const onSubmit = async (formData) => {
-        const tuitionData = {
-            subject: formData.subject,
-            class: formData.class,
-            location: formData.location,
-            budget: parseFloat(formData.budget),
-            status: 'Pending',
-            student: {
-                name: user?.displayName,
-                email: user?.email,
-                photoURL: user?.photoURL
-            }
-        };
-
-        try {
-            await mutateAsync(tuitionData);
-            reset();
-        } catch (err) {
-            console.error(err);
-        }
+  const onSubmit = async (data) => {
+    const tuitionData = {
+      subject: data.subject,
+      level: data.level,
+      salary: parseFloat(data.salary),
+      salaryType: "per month",
+      location: data.location,
+      mode: data.mode,
+      daysPerWeek: parseInt(data.daysPerWeek),
+      time: data.time,
+      posted: new Date().toISOString(),
+      status: "Pending",
+      student: {
+        name: user?.displayName,
+        email: user?.email,
+        photoURL: user?.photoURL,
+      },
     };
 
-    if (isPending) return <div className="min-h-screen flex items-center justify-center"><LoadingSpin /></div>;
+    await mutateAsync(tuitionData);
+    reset();
+  };
 
-    return (
-        <div className="p-4 md:p-10 flex justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="w-full max-w-5xl  rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden">
-                
-                {/* Header Decoration */}
-                <div className="bg-gradient-to-r  p-10 text-center relative">
-                    <div className="absolute top-0 right-0 p-4 opacity-10">
-                        <Layout size={120} />
-                    </div>
-                    <h2 className="text-3xl font-black tracking-tight">Post New Tuition</h2>
-                    <p className=" font-medium mt-2">Find the perfect tutor for your needs</p>
-                </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6 bg-slate-50">
+      <div className="w-full max-w-4xl bg-white shadow-xl rounded-3xl p-10">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Post New Tuition
+        </h2>
 
-                {/* Form Section */}
-                <form onSubmit={handleSubmit(onSubmit)} className="p-10 space-y-8">
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Subject */}
-                        <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest ml-1">
-                                <BookOpen size={14} /> Subject Name
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="e.g. Mathematics"
-                                className={`w-full px-5 py-4 bg-slate-50 border rounded-2xl focus:outline-none focus:ring-4 transition-all font-bold text-slate-700 ${errors.subject ? 'border-red-300 focus:ring-red-50' : 'border-slate-100 focus:ring-emerald-50 focus:border-emerald-500'}`}
-                                {...register('subject', { required: 'Subject is required' })}
-                            />
-                            {errors.subject && <p className="text-[10px] font-bold text-red-500 ml-2 italic">{errors.subject.message}</p>}
-                        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-6">
 
-                        {/* Class */}
-                        <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest ml-1">
-                                <GraduationCap size={14} /> Student Class
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="e.g. Class 10"
-                                className={`w-full px-5 py-4 bg-slate-50 border rounded-2xl focus:outline-none focus:ring-4 transition-all font-bold text-slate-700 ${errors.class ? 'border-red-300 focus:ring-red-50' : 'border-slate-100 focus:ring-emerald-50 focus:border-emerald-500'}`}
-                                {...register('class', { required: 'Class is required' })}
-                            />
-                            {errors.class && <p className="text-[10px] font-bold text-red-500 ml-2 italic">{errors.class.message}</p>}
-                        </div>
+          {/* Subject */}
+          <div>
+            <label className="flex items-center gap-2 mb-2">
+              <BookOpen size={16} /> Subject
+            </label>
+            <input
+              {...register("subject", { required: true })}
+              placeholder="Chemistry"
+              className="input input-bordered w-full"
+            />
+          </div>
 
-                        {/* Location */}
-                        <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest ml-1">
-                                <MapPin size={14} /> Tuition Location
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="e.g. Dhanmondi, Dhaka"
-                                className={`w-full px-5 py-4 bg-slate-50 border rounded-2xl focus:outline-none focus:ring-4 transition-all font-bold text-slate-700 ${errors.location ? 'border-red-300 focus:ring-red-50' : 'border-slate-100 focus:ring-emerald-50 focus:border-emerald-500'}`}
-                                {...register('location', { required: 'Location is required' })}
-                            />
-                            {errors.location && <p className="text-[10px] font-bold text-red-500 ml-2 italic">{errors.location.message}</p>}
-                        </div>
+          {/* Level */}
+          <div>
+            <label className="flex items-center gap-2 mb-2">
+              <GraduationCap size={16} /> Level
+            </label>
+            <input
+              {...register("level", { required: true })}
+              placeholder="Intermediate"
+              className="input input-bordered w-full"
+            />
+          </div>
 
-                        {/* Budget */}
-                        <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest ml-1">
-                                <DollarSign size={14} /> Monthly Budget ($)
-                            </label>
-                            <input
-                                type="number"
-                                placeholder="e.g. 5000"
-                                className={`w-full px-5 py-4 bg-slate-50 border rounded-2xl focus:outline-none focus:ring-4 transition-all font-bold text-slate-700 ${errors.budget ? 'border-red-300 focus:ring-red-50' : 'border-slate-100 focus:ring-emerald-50 focus:border-emerald-500'}`}
-                                {...register('budget', { 
-                                    required: 'Budget is required', 
-                                    min: { value: 1, message: 'Budget must be positive' } 
-                                })}
-                            />
-                            {errors.budget && <p className="text-[10px] font-bold text-red-500 ml-2 italic">{errors.budget.message}</p>}
-                        </div>
-                    </div>
+          {/* Salary */}
+          <div>
+            <label className="flex items-center gap-2 mb-2">
+              <DollarSign size={16} /> Salary
+            </label>
+            <input
+              type="number"
+              {...register("salary", { required: true })}
+              placeholder="2000"
+              className="input input-bordered w-full"
+            />
+          </div>
 
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        disabled={isPending}
-                        className="w-full bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow  active:scale-95 flex items-center justify-center gap-3 disabled:bg-slate-300"
-                    >
-                        <Send size={20} />
-                        {isPending ? 'Publishing...' : 'Confirm & Post Request'}
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
+          {/* Location */}
+          <div>
+            <label className="flex items-center gap-2 mb-2">
+              <MapPin size={16} /> Location
+            </label>
+            <input
+              {...register("location", { required: true })}
+              placeholder="Kishoreganj"
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          {/* Mode */}
+          <div>
+            <label className="mb-2 block">Mode</label>
+            <select {...register("mode")} className="select select-bordered w-full">
+              <option value="Offline">Offline</option>
+              <option value="Online">Online</option>
+            </select>
+          </div>
+
+          {/* Days */}
+          <div>
+            <label className="mb-2 block">Days Per Week</label>
+            <input
+              type="number"
+              {...register("daysPerWeek")}
+              placeholder="3"
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          {/* Time */}
+          <div>
+            <label className="mb-2 block">Time</label>
+            <select {...register("time")} className="select select-bordered w-full">
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </div>
+
+          {/* Submit */}
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              disabled={isPending}
+              className="w-full bg-emerald-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2"
+            >
+              <Send size={18} />
+              {isPending ? "Posting..." : "Post Tuition"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default PostNewTuition;

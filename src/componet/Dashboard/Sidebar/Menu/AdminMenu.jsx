@@ -1,65 +1,66 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router';
-import {
-  Users,
-  BookOpen,
-  BarChart3,
-  LayoutDashboard,
-  Settings,
-  LogOut,
-  ShieldCheck
-} from 'lucide-react';
+import { NavLink } from 'react-router';
+import { Users, BookOpen, BarChart3, LayoutDashboard, ChevronRight, PenTool } from 'lucide-react';
 
 const AdminMenu = () => {
+  // গ্রিন থিম এবং একদম হালকা হোভার ইফেক্ট
   const navLinkStyle = ({ isActive }) =>
-    `group flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 ${isActive
-      ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200"
-      : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-600"
+    `group flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
+      isActive
+        ? "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 shadow-sm shadow-emerald-100/50"
+        : "text-slate-500 hover:bg-emerald-50/50 hover:text-emerald-500 dark:hover:bg-emerald-500/5"
     }`;
 
   return (
-    <div className='flex flex-col h-screen w-72  border-r border-slate-100 p-6 overflow-hidden'>
-
-
-      <div className='flex items-center gap-3 px-2 mb-12'>
-        <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 shadow-lg shadow-indigo-100'>
-          <ShieldCheck className='text-white' size={24} />
-        </div>
+    <div className='px-4'>
+      <div className='space-y-8'>
         <div>
-          <h1 className='text-lg font-black text-slate-900 leading-none'>Adminbd</h1>
-          <p className='text-[10px] font-bold text-emerald-500 uppercase tracking-wider mt-1'>Control Panel</p>
-        </div>
-      </div>
-        <NavLink to="overview" className={navLinkStyle}>
-            <li>Overview</li>
-          </NavLink>
-  
-      <div className='flex-1 flex flex-col gap-8 overflow-y-auto no-scrollbar'>
+          <h2 className='px-4 text-[10px] font-black text-emerald-600/40 uppercase tracking-[0.25em] mb-5'>
+            Main Dashboard
+          </h2>
+          
+          <nav className='flex flex-col gap-1.5'>
+            <NavLink to="overview" className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <LayoutDashboard size={18} strokeWidth={2.5} />
+                <span>Overview</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </NavLink>
 
-    
-        <div>
-          <h2 className='px-4 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4'>Main Dashboard</h2>
-        
-          <nav className='flex flex-col gap-1'>
             <NavLink to='usermangement' className={navLinkStyle}>
-              <Users size={18} className="group-hover:scale-110 transition-transform" />
-              <span>User Management</span>
+              <div className='flex items-center gap-3'>
+                <Users size={18} strokeWidth={2.5} />
+                <span>User Management</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </NavLink>
 
             <NavLink to='tuitionmanagement' className={navLinkStyle}>
-              <BookOpen size={18} className="group-hover:scale-110 transition-transform" />
-              <span>Tuition Management</span>
+              <div className='flex items-center gap-3'>
+                <BookOpen size={18} strokeWidth={2.5} />
+                <span>Tuition Management</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </NavLink>
 
             <NavLink to='reportsanalytics' className={navLinkStyle}>
-              <BarChart3 size={18} className="group-hover:scale-110 transition-transform" />
-              <span>Analytics & Reports</span>
+              <div className='flex items-center gap-3'>
+                <BarChart3 size={18} strokeWidth={2.5} />
+                <span>Analytics & Reports</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </NavLink>
+
+            <NavLink to='Blogpost' className={navLinkStyle}>
+              <div className='flex items-center gap-3'>
+                <PenTool size={18} strokeWidth={2.5} />
+                <span>Blog Post</span>
+              </div>
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </NavLink>
           </nav>
         </div>
-
-   
-
       </div>
     </div>
   );

@@ -11,14 +11,16 @@ const TuitionManagement = () => {
     withCredentials: true
   });
 
+  // Fetch all tuition requests
   const { data: tuitions = [], refetch, isLoading } = useQuery({
     queryKey: ['allTuitions'],
     queryFn: async () => {
       const res = await axiosSecure.get('/tuition');
       return res.data;
-    }
+    },
   });
 
+  // Mutation to update tuition status
   const { mutateAsync: updateStatus } = useMutation({
     mutationFn: async ({ id, status }) => {
       const res = await axiosSecure.patch(`/tuition/${id}`, { status });
@@ -38,11 +40,16 @@ const TuitionManagement = () => {
     }
   });
 
-  if (isLoading) return <div className="min-h-screen flex items-center justify-center"><LoadingSpin /></div>;
+  if (isLoading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <LoadingSpin />
+    </div>
+  );
 
   return (
     <div className="p-4 md:p-10 animate-in fade-in duration-700">
-      {/* Header Section */}
+
+      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
         <div>
           <h2 className="text-4xl font-black tracking-tight">Tuition Requests</h2>
@@ -50,8 +57,8 @@ const TuitionManagement = () => {
             <LayoutGrid size={16} /> Review and manage student tuition postings
           </p>
         </div>
-        
-        {/* Pending Badge Counter */}
+
+        {/* Pending Count */}
         <div className="bg-amber-50 px-6 py-3 rounded-2xl border border-amber-100 flex items-center gap-3">
           <Clock className="text-amber-500 animate-pulse" size={20} />
           <div>
@@ -61,23 +68,23 @@ const TuitionManagement = () => {
         </div>
       </div>
 
-      {/* Grid Layout */}
+      {/* Tuition Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {tuitions.length === 0 ? (
           <div className="col-span-full py-20 text-center bg-white rounded-[3rem] border-2 border-dashed border-slate-200">
-             <p className="text-slate-400 font-bold text-lg">No tuition requests found at the moment.</p>
+            <p className="text-slate-400 font-bold text-lg">No tuition requests found at the moment.</p>
           </div>
         ) : (
           tuitions.map((t) => (
-            <div key={t._id} className=" rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden flex flex-col ">
-              
-              {/* Card Header with Status Badge */}
+            <div key={t._id} className="rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden flex flex-col">
+
+              {/* Card Header */}
               <div className="p-8 pb-0 flex justify-between items-start">
-                <div className="h-14 w-14  rounded-2xl flex items-center justify-center font-black text-xl shadow-sm">
+                <div className="h-14 w-14 rounded-2xl flex items-center justify-center font-black text-xl shadow-sm bg-slate-100">
                   {t.subject.charAt(0)}
                 </div>
                 <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${
-                  t.status === 'Approved' ? ' text-emerald-600 border-emerald-100' :
+                  t.status === 'Approved' ? 'text-emerald-600 border-emerald-100' :
                   t.status === 'Rejected' ? 'bg-rose-50 text-rose-600 border-rose-100' :
                   'bg-amber-50 text-amber-600 border-amber-100'
                 }`}>
@@ -85,30 +92,30 @@ const TuitionManagement = () => {
                 </span>
               </div>
 
-              {/* Content Section */}
+              {/* Content */}
               <div className="p-8 space-y-5 flex-1">
                 <div>
-                  <h3 className="text-2xl font-black  leading-tight">{t.subject}</h3>
-                  <p className="text-xs font-bold uppercase tracking-wider mt-1">Request by: {t.student?.name || 'Anonymous'}</p>
+                  <h3 className="text-2xl font-black leading-tight">{t.subject}</h3>
+                  <p className="text-xs font-bold uppercase tracking-wider mt-1">Requested by: {t.student?.name || 'Anonymous'}</p>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3  font-bold text-sm">
-                    <GraduationCap size={16} className="" />
-                    <span>Class: <span className="">{t.class}</span></span>
+                  <div className="flex items-center gap-3 font-bold text-sm">
+                    <GraduationCap size={16} />
+                    <span>Class: {t.level}</span>
                   </div>
-                  <div className="flex items-center gap-3  font-bold text-sm">
-                    <MapPin size={16} className="" />
-                    <span>Location: <span className="">{t.location}</span></span>
+                  <div className="flex items-center gap-3 font-bold text-sm">
+                    <MapPin size={16} />
+                    <span>Location: {t.location}</span>
                   </div>
-                  <div className="flex items-center gap-3  font-black text-lg pt-2">
+                  <div className="flex items-center gap-3 font-black text-lg pt-2">
                     <DollarSign size={20} className="text-emerald-500" />
-                    <span>${t.budget}<span className="text-xs text-slate-400 font-medium tracking-normal ml-1">/ Monthly</span></span>
+                    <span>${t.salary}<span className="text-xs text-slate-400 font-medium tracking-normal ml-1">/ Monthly</span></span>
                   </div>
                 </div>
               </div>
 
-              {/* Actions Section */}
+              {/* Actions */}
               <div className="px-8 pb-8 pt-0">
                 {t.status === 'Pending' ? (
                   <div className="flex gap-3">
@@ -126,8 +133,8 @@ const TuitionManagement = () => {
                     </button>
                   </div>
                 ) : (
-                  <div className="w-full  py-4 rounded-2xl text-center">
-                    <p className="text-[10px] font-black  uppercase tracking-[0.2em]">Decision Finalized</p>
+                  <div className="w-full py-4 rounded-2xl text-center">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em]">Decision Finalized</p>
                   </div>
                 )}
               </div>

@@ -42,6 +42,7 @@ const Navbar = () => {
       )}
       <li><NavLink className={navLinkClass} to="/about">About</NavLink></li>
       <li><NavLink className={navLinkClass} to="/contact">Contact</NavLink></li>
+      <li><NavLink className={navLinkClass} to="/blog">Blog</NavLink></li>
     </>
   );
 
@@ -80,9 +81,14 @@ const Navbar = () => {
           </button>
 
           {!user ? (
-            <Link to="/login" className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2 rounded-xl text-sm font-black shadow-lg shadow-orange-900/10 active:scale-95 transition-all">
-              Login
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link to="/login" className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2 rounded-xl text-sm font-black shadow-lg shadow-orange-900/10 active:scale-95 transition-all">
+                Login
+              </Link>
+              <Link to="/register" className="border border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white px-6 py-2 rounded-xl text-sm font-black active:scale-95 transition-all">
+                Register
+              </Link>
+            </div>
           ) : (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="cursor-pointer block">

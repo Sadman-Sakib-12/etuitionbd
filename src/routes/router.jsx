@@ -28,6 +28,7 @@ import Overview from "../Pages/Dashboard/Common/Overview";
 import Blog from "../componet/Blog";
 import PrivacyTerms from "../componet/PrivacyTerms";
 import HelpSupport from "../componet/HelpSupport";
+import Blogpost from "../Pages/Dashboard/Admin/Blogpost";
 
 
 const router = createBrowserRouter([
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: '/regiter',
+                path: '/register',
                 element: <Register />
             },
         ]
@@ -148,6 +149,15 @@ const router = createBrowserRouter([
                     <PrivateRouter>
                         <Adminroute>
                             <ReportsAnalytics />
+                        </Adminroute>
+                    </PrivateRouter>)
+            },
+            {
+                path: 'blogpost',
+                element: (
+                    <PrivateRouter>
+                        <Adminroute>
+                         <Blogpost/>
                         </Adminroute>
                     </PrivateRouter>)
             },
