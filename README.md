@@ -1,5 +1,6 @@
-# eTuitionBD
 
+# eTuitionBD
+  <div><img src="https://i.ibb.co.com/N2rGmBrw/Annotation-2026-04-14-185750.jpg" width="100%" alt="Banner" /></div>
 A full-stack tuition management platform connecting students with verified tutors in Bangladesh.
 
 **Live Site:** https://etuitionbd-b71b0.web.app
